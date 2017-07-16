@@ -12,6 +12,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AgentesComponent } from './dashboard/agentes/agentes.component';
 // import { AuthGuard } from './security/auth.guard';
 
+import { DataTablesModule } from 'angular-datatables';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import { AgentesComponent } from './dashboard/agentes/agentes.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    DataTablesModule,
     routing
   ],
   providers: [appRoutingProviders],

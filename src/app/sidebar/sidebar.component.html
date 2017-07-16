@@ -4,7 +4,7 @@
         <!-- Inicio del menu sidebar -->
         <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
             <!--  -->
-            <li class="nav-item start" *ngFor="let option of options" routerLinkActive="active">
+            <li class="nav-item start" *ngFor="let option of options" routerLinkActive="open active">
                 <a [routerLink]="['/', option.url]" class="nav-link" >
                     <i class="{{ option.icon }}"></i>
                     <span class="title">{{ option.title }}</span>

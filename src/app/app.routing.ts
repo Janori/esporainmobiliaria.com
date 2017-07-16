@@ -37,7 +37,7 @@ const appRoutes : Routes = [
         ]
     },
     { path: 'login', component: LoginComponent },
-    { path: '**', component: HomeComponent }
+    { path: '**', component: DashboardComponent }
 ];
 
 export const appRoutingProviders: Array<any> = [];
