@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <a href="agentadd"><button id="sample_editable_1_new" class="btn sbold green"> Agregar agente
+                                <a [routerLink]="['crear']"><button id="sample_editable_1_new" class="btn sbold green"> Agregar agente
                                     <i class="fa fa-plus"></i>
                                 </button> </a>
                             </div>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1" >
                     <thead>
                         <tr>
 
@@ -51,9 +51,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd gradeX">
-                            <td> Joropeza</td>
-                            <td>Jonathan Oropeza Mendez</td>
+                        <tr class="odd gradeX" *ngFor="let user of users">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name + ' ' + user.first_surname + ' ' + user.second_surname }}</td>
                             <td><span class="label label-sm label-success">Pacífico</span></td>
                             <td>
                                 <div class="btn-group">
@@ -62,12 +62,12 @@
                                     </button>
                                     <ul class="dropdown-menu pull-left" role="menu">
                                         <li>
-                                            <a href="agentedit">
-                                                <i class="icon-user-following"></i> Editar </a>
+                                            <a [routerLink]="[user.id, 'editar']">
+                                            <i class="icon-user-following"></i> Editar </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;">
-                                                <i class="icon-user-unfollow"></i> Eliminar </a>
+                                            <i class="icon-user-unfollow"></i> Eliminar </a>
                                         </li>
                                     </ul>
                                 </div>
