@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { User } from '../shared/User';
 
 declare var $: any;
 
@@ -12,12 +13,21 @@ declare var $: any;
   ],
   encapsulation: ViewEncapsulation.None
 })
+
 export class DashboardComponent implements OnInit {
+    public user: User;
+    constructor() {
+    }
 
-  constructor() { }
+    ngOnInit() {
+        // TODO Hacer conexión con la BD para logear
 
-  ngOnInit() {
-      $('body').attr('class', 'page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo');
-  }
+        this.user = new User({
+            name: 'Jonathan',
+            fist_surname: 'Doe'
+        });
+
+        $('body').attr('class', 'page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo');
+    }
 
 }

@@ -25,6 +25,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './dashboard/home/home.component';
+import { AgentesComponent } from './dashboard/agentes/agentes.component';
 
 const appRoutes : Routes = [
     {
@@ -32,9 +33,11 @@ const appRoutes : Routes = [
         component: DashboardComponent,
         children: [
             { path: '', component: HomeComponent },
+            { path: 'agentes', component: AgentesComponent },
         ]
     },
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: '**', component: HomeComponent }
 ];
 
 export const appRoutingProviders: Array<any> = [];

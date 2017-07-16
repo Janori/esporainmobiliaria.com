@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './dashboard/home/home.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { AgentesComponent } from './dashboard/agentes/agentes.component';
 // import { AuthGuard } from './security/auth.guard';
 
 @NgModule({
@@ -15,7 +17,9 @@ import { HomeComponent } from './dashboard/home/home.component';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    SidebarComponent,
+    AgentesComponent
   ],
   imports: [
     BrowserModule,
