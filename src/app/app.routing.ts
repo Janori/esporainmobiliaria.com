@@ -9,6 +9,10 @@ import { AgentEditComponent } from './dashboard/agents/edit/agent-edit.component
 import { BranchesComponent } from './dashboard/branches/branches.component';
 import { BranchOfficeEditComponent } from './dashboard/branches/edit/branch-office-edit.component';
 import { BranchOfficeCreateComponent } from './dashboard/branches/create/branch-office-create.component';
+import { PropertiesComponent } from './dashboard/properties/properties.component';
+import { PropertyEditComponent } from './dashboard/properties/edit/property-edit.component';
+import { PropertyCreateComponent } from './dashboard/properties/create/property-create.component';
+import { PropertyDetailComponent } from './dashboard/properties/detail/property-detail.component';
 
 const appRoutes : Routes = [
     {
@@ -30,6 +34,15 @@ const appRoutes : Routes = [
                     { path: '', component: BranchesComponent },
                     { path: ':id/editar', component: BranchOfficeEditComponent },
                     { path: 'crear', component: BranchOfficeCreateComponent }
+                ]
+            },
+            {
+                path: 'inmuebles',
+                children: [
+                    { path: '', component: PropertiesComponent },
+                    { path: 'crear', component: PropertyCreateComponent },
+                    { path: ':id', component: PropertyDetailComponent},
+                    { path: ':id/editar', component: PropertyEditComponent }
                 ]
             },
             { path: '**', component: HomeComponent }

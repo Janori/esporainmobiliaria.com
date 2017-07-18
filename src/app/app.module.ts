@@ -17,6 +17,10 @@ import { AgentEditComponent } from './dashboard/agents/edit/agent-edit.component
 import { BranchesComponent } from './dashboard/branches/branches.component';
 import { BranchOfficeEditComponent } from './dashboard/branches/edit/branch-office-edit.component';
 import { BranchOfficeCreateComponent } from './dashboard/branches/create/branch-office-create.component';
+import { PropertiesComponent } from './dashboard/properties/properties.component';
+import { PropertyEditComponent } from './dashboard/properties/edit/property-edit.component';
+import { PropertyCreateComponent } from './dashboard/properties/create/property-create.component';
+import { PropertyDetailComponent } from './dashboard/properties/detail/property-detail.component';
 // import { AuthGuard } from './security/auth.guard';
 
 
@@ -32,6 +36,10 @@ import { BranchOfficeCreateComponent } from './dashboard/branches/create/branch-
     BranchesComponent,
     BranchOfficeEditComponent,
     BranchOfficeCreateComponent,
+    PropertiesComponent,
+    PropertyEditComponent,
+    PropertyCreateComponent,
+    PropertyDetailComponent,
   ],
   imports: [
     BrowserModule,
