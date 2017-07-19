@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Rx';
-import { User } from '../../shared/User';
+import { User } from '../../shared/model/User';
 
 @Component({
     selector: 'app-agents',

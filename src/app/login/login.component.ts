@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { User } from '../shared/model/User';
+import { AuthService }from '../shared/security/auth.service';
 
 declare var $:any;
+declare var lscache:any;
 
 @Component({
   selector: 'app-login',
@@ -11,13 +14,12 @@ declare var $:any;
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
-
+    public user: User;
     constructor(
-        // private _authService : AuthService,
+        private _authService : AuthService,
         private _router: Router
     ) {
-        // this.user = new User();
-        //this.loading = true;
+        this.user = new User();
     }
 
   ngOnInit() {
@@ -25,6 +27,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit = () => {
-      this._router.navigate(['/']);
+      this._authService.login(this.user).subscribe(
+          result => {
+              if(result.status) {
+                  lscache.set('user', result.user, 30);
+                  this._router.navigate(['/']);
+              }
+          },
+          error => {
+              return false;
+          });
   }
 }
