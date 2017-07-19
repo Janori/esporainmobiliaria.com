@@ -1,5 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/security/auth.guard';
 
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -15,6 +16,7 @@ import { PropertyCreateComponent } from './dashboard/properties/create/property-
 import { PropertyDetailComponent } from './dashboard/properties/detail/property-detail.component';
 
 const appRoutes : Routes = [
+    { path: 'login', component: LoginComponent },
     {
         path: '',
         component: DashboardComponent,
@@ -43,12 +45,12 @@ const appRoutes : Routes = [
                     { path: 'crear', component: PropertyCreateComponent },
                     { path: ':id', component: PropertyDetailComponent},
                     { path: ':id/editar', component: PropertyEditComponent }
-                ]
+                ],
             },
             { path: '**', component: HomeComponent }
-        ]
+        ],
+        canActivate: [AuthGuard]
     },
-    { path: 'login', component: LoginComponent },
     { path: '**', component: DashboardComponent }
 ];
 

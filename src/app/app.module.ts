@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { routing, appRoutingProviders} from './app.routing';
+import { AuthService } from './shared/security/auth.service';
+import { AuthGuard } from './shared/security/auth.guard';
 
 import { DataTablesModule } from 'angular-datatables';
 
@@ -21,7 +23,6 @@ import { PropertiesComponent } from './dashboard/properties/properties.component
 import { PropertyEditComponent } from './dashboard/properties/edit/property-edit.component';
 import { PropertyCreateComponent } from './dashboard/properties/create/property-create.component';
 import { PropertyDetailComponent } from './dashboard/properties/detail/property-detail.component';
-// import { AuthGuard } from './security/auth.guard';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { PropertyDetailComponent } from './dashboard/properties/detail/property-
     DataTablesModule,
     routing
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
