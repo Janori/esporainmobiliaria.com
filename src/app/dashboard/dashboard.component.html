@@ -1,0 +1,144 @@
+<div class="page-header navbar navbar-fixed-top">
+    <div class="page-header-inner ">
+        <div class="page-logo">
+            <a routerLink="/">
+                <img src="../assets/layout/img/logo-light.png" alt="logo" class="logo-default" /> </a>
+            <div class="menu-toggler sidebar-toggler">
+            </div>
+        </div>
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+        <!-- Inicio de la pagina TOP -->
+        <div class="page-top">
+            <!-- Inicio de la barra de nav TOP -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="separator hide"> </li>
+                    <!-- Inicio del desplegable de notificación -->
+                    <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <i class="icon-bell"></i>
+                            <span class="badge badge-success"> 5 </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="external">
+                                <h3>
+                                    <span class="bold">5 Notificaciones</span> Pendientes</h3>
+                                <a href="profile.html">Ver todas</a>
+                            </li>
+                            <li>
+                                <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+                                    <li>
+                                      <a href="javascript:;">
+                                          <span class="time">Justo Ahora</span>
+                                          <span class="details">
+                                              <span class="label label-sm label-icon label-info">
+                                                  <i class="fa fa-home"></i>
+                                              </span>Inmueble vendido</span>
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="javascript:;">
+                                          <span class="time">15 Mins</span>
+                                          <span class="details">
+                                              <span class="label label-sm label-icon label-info">
+                                                  <i class="fa fa-home"></i>
+                                              </span> Inmueble vendido</span>
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="javascript:;">
+                                          <span class="time">1 Hora</span>
+                                          <span class="details">
+                                              <span class="label label-sm label-icon label-info">
+                                                  <i class="fa fa-home"></i>
+                                              </span> Inmueble vendido </span>
+                                      </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="time">14 hrs</span>
+                                            <span class="details">
+                                                <span class="label label-sm label-icon label-info">
+                                                    <i class="fa fa-home"></i>
+                                                </span>Inmueble vendido</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="time">2 Dias</span>
+                                            <span class="details">
+                                                <span class="label label-sm label-icon label-info">
+                                                    <i class="fa fa-home"></i>
+                                                </span>Inmueble vendido</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Fin del desplegable de notificación -->
+                    <li class="separator hide"> </li>
+                    <li class="dropdown dropdown-user dropdown-dark">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <span class="username username-hide-on-mobile">{{ user.name }}</span>
+                            <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
+                            <img alt="" class="img-circle" src="../assets/layout/img/avatar9.jpg" /> </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="profile.html">
+                                    <i class="icon-user"></i> Mi perfil </a>
+                            </li>
+                            <li>
+                                <a href="ventas.html">
+                                    <i class="icon-bar-chart"></i> Mis Ventas
+                                    <span class="badge badge-danger"> 30 </span>
+                                </a>
+                            </li>
+                            <li class="divider"> </li>
+                            <li>
+                                <a href="lock.html">
+                                    <i class="icon-lock"></i> Bloquear Pantalla </a>
+                            </li>
+                            <li>
+                                <a (click)="doLogout()">
+                                    <i class="icon-key"></i> Salir </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- Fin de la pagina  TOP -->
+    </div>
+    <!-- Fin del header Inner -->
+</div>
+<!-- Fin del Header -->
+<!-- Inicio del divisor header/content -->
+<div class="clearfix"> </div>
+<!-- Fin del divisor header/content -->
+<!-- Inicio del contenedor -->
+<div class="page-container">
+    <!-- Inicio del Sidebar-->
+    <app-sidebar></app-sidebar>
+    <!-- Fin del Sidebar -->
+    <div class="page-content-wrapper">
+        <!-- Inicio del Body -->
+        <div class="page-content">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- Fin del Body -->
+    </div>
+</div>
+<!-- Fin del contenido -->
+<!-- Inicio del Footer -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2017 &copy; Hecho por IT Networks de México
+        <a target="_blank" href="http://janori.com" style="visibility: hidden;">Janori</a> &nbsp;|&nbsp;
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<!-- Fin del footer -->
