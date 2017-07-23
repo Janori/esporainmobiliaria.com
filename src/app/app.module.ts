@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { routing, appRoutingProviders} from './app.routing';
@@ -24,8 +24,8 @@ import { PropertyEditComponent } from './dashboard/properties/edit/property-edit
 import { PropertyCreateComponent } from './dashboard/properties/create/property-create.component';
 import { PropertyDetailComponent } from './dashboard/properties/detail/property-detail.component';
 import { UsersComponent } from './dashboard/users/users.component';
-import { UserEditComponent } from './dashboard/users/edit/user-edit.component';
-import { UserCreateComponent } from './dashboard/users/create/user-create.component';
+import { UserEditComponent } from './dashboard/users/user-edit.component';
+import { UserCreateComponent } from './dashboard/users/user-create.component';
 
 
 @NgModule({
@@ -51,6 +51,7 @@ import { UserCreateComponent } from './dashboard/users/create/user-create.compon
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     DataTablesModule,
     routing

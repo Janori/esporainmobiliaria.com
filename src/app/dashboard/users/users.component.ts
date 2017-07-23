@@ -4,6 +4,7 @@ import { User } from '../../shared/model/User';
 import { Subject } from 'rxjs/Rx';
 
 declare var bootbox: any;
+declare var lscache: any;
 
 @Component({
   selector: 'app-users',
@@ -44,6 +45,10 @@ export class UsersComponent implements OnInit {
     }
 
     deleteUser = (id: Number) => {
+        if(id == lscache.get('user').id) {
+            bootbox.alert('No es posible eliminarse a sí mismo.');
+            return;
+        }
         var self = this;
         bootbox.confirm({
             message: "¿Está seguro que desea eliminar este usuario?",

@@ -31,16 +31,16 @@
                         <div class="portlet-title tabbable-line">
                             <div class="caption caption-md">
                                 <i class="icon-globe theme-font hide"></i>
-                                <span class="caption-subject font-blue-madison bold uppercase">Perfil de Agente</span>
+                                <span class="caption-subject font-blue-madison bold uppercase">Perfil de Usuario</span>
                             </div>
                             <ul class="nav nav-tabs">
                                 <li class="active">
                                     <a href="#tab_1_1" data-toggle="tab">Informacion personal</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="#tab_1_2" data-toggle="tab">Cambiar Imagen de perfil</a>
-                                </li>
-                                <li>
+                                </li> -->
+                                <li *ngIf="user.created_at != null">
                                     <a href="#tab_1_3" data-toggle="tab">Cambiar contraseña</a>
                                 </li>
                             </ul>
@@ -62,6 +62,16 @@
                                             <label class="control-label">Apellido Materno</label>
                                             <input [(ngModel)]="user.last_surname" type="text" class="form-control" name="last_surname" pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
                                         </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label class="control-label">Email</label>
+                                            <input [(ngModel)]="user.email" type="email" class="form-control" name="email" required/>
+                                        </div>
+                                        <div class="form-group" [hidden]="user.created == null">
+                                            <label class="control-label">Contraseña</label>
+                                            <input [(ngModel)]="user.password" type="password" class="form-control" name="password" required/>
+                                        </div>
+                                        <hr>
                                         <!-- <div class="form-group">
                                             <label class="control-label">Teléfono Móvil</label>
                                             <input type="text" placeholder="+1 646 580 PRUEBA (6284)" class="form-control" /> </div>
@@ -115,7 +125,7 @@
                                 </div>
                                 <!-- Fin Informacion personal TAB -->
                                 <!-- Cambio Imagen TAB -->
-                                <div class="tab-pane" id="tab_1_2">
+                                <div class="tab-pane" id="tab_1_2"  *ngIf="user.created_at != null">
                                     <form action="#" role="form">
                                         <div class="form-group">
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -140,16 +150,17 @@
                                 </div>
                                 <!-- Fin Cambio Imagen TAB -->
                                 <!-- Cambio de Contra TAB -->
-                                <div class="tab-pane" id="tab_1_3">
-                                    <form action="#">
+                                <div class="tab-pane" id="tab_1_3" *ngIf="user.created_at != nulll">
+                                    <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                                        <div class="alert alert-danger" *ngIf="passwordForm.controls.confirmPassword.errors?.MatchPassword">Las contraseñas no coinciden.</div>
                                         <div class="form-group">
-                                            <label class="control-label">Nueva Contraseña</label>
-                                            <input type="password" class="form-control" /> </div>
+                                            <label class="control-label" >Nueva Contraseña</label>
+                                            <input type="password" class="form-control" formControlName="password" [formGroup]="passwordForm"/> </div>
                                         <div class="form-group">
-                                            <label class="control-label">Reescribe la nueva Contraseña</label>
-                                            <input type="password" class="form-control" /> </div>
+                                            <label class="control-label" >Reescribe la nueva Contraseña</label>
+                                            <input type="password" class="form-control" formControlName="confirmPassword" [formGroup]="passwordForm"/> </div>
                                         <div class="margin-top-10">
-                                            <a href="javascript:;" class="btn green"> Cambiar Contraseña</a>
+                                            <button type="submit" class="btn green" [disabled]="!passwordForm.valid"> Cambiar Contraseña</button>
                                             <a href="agents" class="btn default"> Cancelar </a>
                                         </div>
                                     </form>

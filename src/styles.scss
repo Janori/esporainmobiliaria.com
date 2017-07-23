@@ -3,11 +3,8 @@
 @import "./assets/global/css/components.min.css";
 
 .ng-invalid:not(form) {
-    &.ng-touched {
-        border: 2px solid #c10606;
-    }
+    &.ng-touched,
     &.ng-dirty {
         border: 2px solid #c10606;
     }
-    border: 2px solid #c10606;
 }

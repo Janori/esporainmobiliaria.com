@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import url(./assets/global/css/components.min.css);
-.ng-invalid:not(form) { border: 2px solid #c10606; }
-
 .ng-invalid:not(form).ng-touched { border: 2px solid #c10606; }
 
 .ng-invalid:not(form).ng-dirty { border: 2px solid #c10606; }

@@ -15,8 +15,8 @@ import { PropertyEditComponent } from './dashboard/properties/edit/property-edit
 import { PropertyCreateComponent } from './dashboard/properties/create/property-create.component';
 import { PropertyDetailComponent } from './dashboard/properties/detail/property-detail.component';
 import { UsersComponent } from './dashboard/users/users.component';
-import { UserEditComponent } from './dashboard/users/edit/user-edit.component';
-import { UserCreateComponent } from './dashboard/users/create/user-create.component';
+import { UserEditComponent } from './dashboard/users/user-edit.component';
+import { UserCreateComponent } from './dashboard/users/user-create.component';
 
 const appRoutes : Routes = [
     { path: 'login', component: LoginComponent },
