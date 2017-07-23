@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 import { User } from '../model/User';
 
-import { Service } from './Service';
+import { Service } from '../services/Service';
 
 declare var lscache: any;
 
@@ -26,14 +26,14 @@ export class AuthService extends Service {
 
 	login = (user: User) => {
 		let params = JSON.stringify(user);
-		let headers = new Headers({'Content-Type' : 'application/json'});
+		let headers = this.headers();
 
-		return this._http.post(this.url + 'authenticate', params, {headers: headers})
+		return this._http.post(this.url + 'authenticate', params, {headers})
 						 .map(res => res.json());
     }
 
 	logout = () => {
-        lscache.remove("user");
+        lscache.flush();
 		this._router.navigate(['login']);
 	}
 }

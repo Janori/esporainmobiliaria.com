@@ -29,8 +29,11 @@ export class LoginComponent implements OnInit {
   onSubmit = () => {
       this._authService.login(this.user).subscribe(
           result => {
+              console.log(result);
+              let data = result.data;
               if(result.status) {
-                  lscache.set('user', result.user, 30);
+                  lscache.set('user', data.user, data.ttl);
+                  lscache.set('authToken', data.token, data.ttl);
                   this._router.navigate(['/']);
               }
           },

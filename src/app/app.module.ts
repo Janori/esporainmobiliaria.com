@@ -23,6 +23,9 @@ import { PropertiesComponent } from './dashboard/properties/properties.component
 import { PropertyEditComponent } from './dashboard/properties/edit/property-edit.component';
 import { PropertyCreateComponent } from './dashboard/properties/create/property-create.component';
 import { PropertyDetailComponent } from './dashboard/properties/detail/property-detail.component';
+import { UsersComponent } from './dashboard/users/users.component';
+import { UserEditComponent } from './dashboard/users/edit/user-edit.component';
+import { UserCreateComponent } from './dashboard/users/create/user-create.component';
 
 
 @NgModule({
@@ -41,6 +44,9 @@ import { PropertyDetailComponent } from './dashboard/properties/detail/property-
     PropertyEditComponent,
     PropertyCreateComponent,
     PropertyDetailComponent,
+    UsersComponent,
+    UserEditComponent,
+    UserCreateComponent,
   ],
   imports: [
     BrowserModule,

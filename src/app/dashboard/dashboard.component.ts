@@ -19,6 +19,7 @@ declare var lscache: any;
 
 export class DashboardComponent implements OnInit {
     public user: User;
+    
     constructor(private _authService: AuthService) {
     }
 
