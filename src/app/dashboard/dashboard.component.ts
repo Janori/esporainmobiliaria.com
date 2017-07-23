@@ -19,13 +19,14 @@ declare var lscache: any;
 
 export class DashboardComponent implements OnInit {
     public user: User;
-    
+    public url: string;
+
     constructor(private _authService: AuthService) {
     }
 
     ngOnInit() {
         this.user = new User(lscache.get('user'));
-
+        this.url = this._authService.url.replace('/api/', '') + '/';
         $('body').attr('class', 'page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo');
     }
 
