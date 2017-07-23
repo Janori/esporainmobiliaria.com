@@ -30,7 +30,8 @@
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js",
         "../node_modules/datatables.net/js/jquery.dataTables.js",
-        "../node_modules/lscache/lscache.js"
+        "../node_modules/lscache/lscache.js",
+        "../node_modules/bootbox/bootbox.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -63,6 +64,14 @@
   "defaults": {
     "styleExt": "css",
     "component": {
+    },
+    "spec": {
+      "class": false,
+      "component": false,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": false
     }
   }
 }
