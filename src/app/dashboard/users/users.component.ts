@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services';
 import { User } from '../../shared/model/User';
+import { Subject } from 'rxjs/Rx';
+
+declare var bootbox: any;
 
 @Component({
   selector: 'app-users',
@@ -11,20 +14,64 @@ import { User } from '../../shared/model/User';
 export class UsersComponent implements OnInit {
     public users: User[];
 
+    public dtOptions: DataTables.Settings = {};
+    public dtTrigger: Subject<any> = new Subject<any>();
+
     constructor(
       private _userService: UserService
     ) { }
 
     ngOnInit() {
-      this._userService.getAllUsers().subscribe(
-          result => {
+        this.getAllUsers();
+    }
 
-          },
-          error => {
-              console.log(error);
-              alert('Hay un error en la petición');
-          }
-      )
+    getAllUsers = () => {
+        this._userService.getAllUsers().subscribe(
+            result => {
+                this.users = result.data;
+
+                for(var i = 0; i < this.users.length; i++)
+                   this.users[i] = new User(this.users[i]);
+
+                 this.dtTrigger.next();
+
+            },
+            error => {
+                console.log(error);
+                alert('Hay un error en la petición');
+            }
+        )
+    }
+
+    deleteUser = (id: Number) => {
+        var self = this;
+        bootbox.confirm({
+            message: "¿Está seguro que desea eliminar este usuario?",
+            buttons: {
+                confirm: {
+                    label: 'Sí',
+                    className: 'btn-danger'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-default'
+                }
+            },
+            callback: function (result) {
+                if(result) {
+                    self._userService.deleteUser(id).subscribe(
+                        result => {
+                            bootbox.alert(result.msg);
+                            self.getAllUsers();
+                        },
+                        error => {
+                            console.log(error);
+                            alert('Hay un error en la petición');
+                        }
+                    )
+                }
+            }
+        });
     }
 
 }
