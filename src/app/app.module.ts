@@ -15,7 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './dashboard/home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AgentsComponent } from './dashboard/agents/agents.component';
-import { AgentEditComponent } from './dashboard/agents/edit/agent-edit.component';
+import { AgentEditComponent } from './dashboard/agents/agent-edit.component';
 import { BranchesComponent } from './dashboard/branches/branches.component';
 import { BranchOfficeEditComponent } from './dashboard/branches/edit/branch-office-edit.component';
 import { BranchOfficeCreateComponent } from './dashboard/branches/create/branch-office-create.component';
