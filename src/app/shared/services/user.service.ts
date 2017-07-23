@@ -23,6 +23,21 @@ export class UserService extends Service {
 			             .map(res => res.json());
     }
 
+    getUser = (id: Number) => {
+        let headers = this.headers();
+        return this._http.get(this.url + 'user/' + id, { headers })
+			             .map(res => res.json());
+    }
+
+    editUser = (id: Number, user: any) => {
+        let params  = JSON.stringify(user);
+        let headers = this.headers();
+
+        return this._http.put(this.url + 'user/' + id, params, { headers })
+                         .map(res => res.json());
+    }
+
+
     deleteUser = (id: Number) => {
         let headers = this.headers();
         return this._http.delete(this.url + 'user/' + id, { headers })

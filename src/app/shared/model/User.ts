@@ -7,7 +7,7 @@ export class User {
 	public remember_token: string;
 	public img_path: string;
 	public first_surname: string;
-	public second_surname: string;
+	public last_surname: string;
 	public gender: string;
 	public mariage_status: string;
 	public address: string;
@@ -15,7 +15,7 @@ export class User {
 	public created_at: string;
 	public updated_at: string;
 
-	public static NO_USER_PATH = '/images/default-user-image.png';
+	public static NO_USER_PATH = 'images/default-user-image.png';
 
 	constructor(obj?: any) {
 		this.id = obj && obj.id || 0;
@@ -26,7 +26,7 @@ export class User {
 		this.remember_token = null;
 		this.img_path = obj && obj.img_path || User.NO_USER_PATH;
 		this.first_surname = obj && obj.first_surname || '';
-		this.second_surname = obj && obj.second_surname || '';
+		this.last_surname = obj && obj.last_surname || '';
 		this.gender = obj && obj.gender || '';
 		this.mariage_status = obj && obj.mariage_status || '';
 		this.address = obj && obj.address || '';

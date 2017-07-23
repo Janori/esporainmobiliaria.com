@@ -32,7 +32,7 @@
                     <tbody>
                         <tr class="odd gradeX" *ngFor="let user of users">
                             <td>{{ user.username }}</td>
-                            <td>{{ user.name + ' ' + user.first_surname + ' ' + (user.second_surname != null ? user.second_surname : '')}}</td>
+                            <td>{{ user.name + ' ' + user.first_surname + ' ' + (user.first_surname != null ? user.first_surname : '')}}</td>
                             <td><span class="label label-sm label-success">{{ user.kind }}</span></td>
                             <td>
                                 <div class="btn-group">
