@@ -2,6 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Service } from '../shared/services/Service';
 import { Http, Headers } from '@angular/http';
 
+declare var lscache: any;
+
 @Pipe({
   name: 'enumWs'
 })
@@ -11,8 +13,7 @@ export class EnumWsPipe implements PipeTransform {
 
   transform(value: any, url:string): any {
     let headers = new Headers();
-    headers.append("Authorization", localStorage.getItem('auth_token'));
-
+    headers.append("Authorization", lscache.get('authToken'));
     let cUrl = new Service().url + url;
 
     return this.http.get(cUrl, { headers })
