@@ -6,9 +6,10 @@ import { HttpModule } from '@angular/http';
 import { routing, appRoutingProviders} from './app.routing';
 import { AuthService } from './shared/security/auth.service';
 import { AuthGuard } from './shared/security/auth.guard';
+import { EnumWsPipe } from './pipes/enum-ws.pipe';
 
 import { DataTablesModule } from 'angular-datatables';
- import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -27,7 +28,6 @@ import { PropertyDetailComponent } from './dashboard/properties/detail/property-
 import { UsersComponent } from './dashboard/users/users.component';
 import { UserEditComponent } from './dashboard/users/user-edit.component';
 import { UserCreateComponent } from './dashboard/users/user-create.component';
-import { EnumWsPipe } from './pipes/enum-ws.pipe';
 
 
 @NgModule({
