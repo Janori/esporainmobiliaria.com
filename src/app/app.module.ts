@@ -8,6 +8,7 @@ import { AuthService } from './shared/security/auth.service';
 import { AuthGuard } from './shared/security/auth.guard';
 
 import { DataTablesModule } from 'angular-datatables';
+ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -54,6 +55,7 @@ import { UserCreateComponent } from './dashboard/users/user-create.component';
     ReactiveFormsModule,
     HttpModule,
     DataTablesModule,
+    NguiAutoCompleteModule,
     routing
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard],
