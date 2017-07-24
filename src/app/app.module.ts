@@ -26,6 +26,7 @@ import { PropertyDetailComponent } from './dashboard/properties/detail/property-
 import { UsersComponent } from './dashboard/users/users.component';
 import { UserEditComponent } from './dashboard/users/user-edit.component';
 import { UserCreateComponent } from './dashboard/users/user-create.component';
+import { EnumWsPipe } from './pipes/enum-ws.pipe';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { UserCreateComponent } from './dashboard/users/user-create.component';
     UsersComponent,
     UserEditComponent,
     UserCreateComponent,
+    EnumWsPipe,
   ],
   imports: [
     BrowserModule,
