@@ -22,7 +22,7 @@
                         <tr class="odd gradeX" *ngFor="let agent of agents">
                             <td>{{ agent.username }}</td>
                             <td>{{ agent.name + ' ' + agent.first_surname + ' ' + agent.last_surname }}</td>
-                            <td><span class="label label-sm label-success">Pacífico</span></td>
+                            <td><span class="label label-sm label-success">{{ agent.branch_id != null ? agent.branch.name : 'N/A' }}</span></td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Opciones

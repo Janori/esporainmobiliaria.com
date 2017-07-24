@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
-import { Service } from './Service';
+import { UserService } from './';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class AgentService extends Service {
+export class AgentService extends UserService {
 
     constructor(
-        private _http: Http
+        public http: Http
     ) {
-      super();
+      super(http);
     }
 
     getAllAgents = () => {
         let headers = this.headers();
-        return this._http.get(this.url + 'agent', { headers })
+        return this.http.get(this.url + 'user/kind/u', { headers })
 			             .map(res => res.json());
     }
 

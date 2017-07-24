@@ -1,3 +1,5 @@
+import { Branch } from './';
+
 export class User {
 	public id: Number;
 	public name: string;
@@ -12,8 +14,18 @@ export class User {
 	public mariage_status: string;
 	public address: string;
 	public kind: string;
+	public branch_id: string;
+	public branch: Branch;
 	public created_at: string;
 	public updated_at: string;
+
+	// TODO Cambiar estos a inglés.
+	public colonia: string;
+	public cp: string;
+	public municipio: string;
+	public estado: string;
+	public pais: string;
+	//
 
 	public static NO_USER_PATH = 'images/default-user-image.png';
 
@@ -33,5 +45,11 @@ export class User {
 		this.kind = obj && obj.kind || '';
 		this.created_at = obj && obj.created_at || null;
 		this.updated_at = obj && obj.updated_at || null;
+
+		this.colonia = obj && obj.colonia || '';
+		this.cp = obj && obj.cp || '';
+		this.municipio = obj && obj.municipio || '';
+		this.estado = obj && obj.estado || '';
+		this.pais = obj && obj.pais || '';
 	}
 }

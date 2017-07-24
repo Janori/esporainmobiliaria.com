@@ -13,36 +13,14 @@
             <div class="portlet light profile-sidebar-portlet bordered">
                 <!-- Sidebar user profile-->
                 <div class="profile-userpic">
-                    <img src="assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> </div>
+                    <img src="{{ url + agent.img_path }}" class="img-responsive" alt=""> </div>
                 <!-- Fin Sidebar user profile -->
                 <!-- Sidebar user Nombre -->
                 <div class="profile-usertitle">
-                    <div class="profile-usertitle-name"> Jonathan Oropeza Mendez </div>
-                    <div class="profile-usertitle-job"> Agente Inmobiliario </div>
+                    <div class="profile-usertitle-name"> {{ agent.name + ' ' + agent.first_surname + ' ' + agent.last_surname }} </div>
+                    <div class="profile-usertitle-job"> {{ agent.kind }} </div>
                 </div>
                 <!-- Fin Sidebar user Nombre -->
-            </div>
-            <div class="portlet light bordered">
-                <!-- Stats -->
-                <div class="row list-separated profile-stat">
-                    <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title"> $160k </div>
-                        <div class="uppercase profile-stat-text"> Ventas </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title"> 1 </div>
-                        <div class="uppercase profile-stat-text"> Operacion </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title"> 10 </div>
-                        <div class="uppercase profile-stat-text"> Prospectos </div>
-                    </div>
-                </div>
-                <!-- Fin Stats -->
-                <div>
-                    <h4 class="profile-desc-title">Datos mensuales</h4>
-                    <span class="profile-desc-text"> Resumen estadistico. </span>
-                </div>
             </div>
         </div>
         <!-- Inicio del contenido del perfil -->
@@ -53,16 +31,16 @@
                         <div class="portlet-title tabbable-line">
                             <div class="caption caption-md">
                                 <i class="icon-globe theme-font hide"></i>
-                                <span class="caption-subject font-blue-madison bold uppercase">Perfil de Agente</span>
+                                <span class="caption-subject font-blue-madison bold uppercase">Perfil de Usuario</span>
                             </div>
                             <ul class="nav nav-tabs">
                                 <li class="active">
                                     <a href="#tab_1_1" data-toggle="tab">Informacion personal</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="#tab_1_2" data-toggle="tab">Cambiar Imagen de perfil</a>
-                                </li>
-                                <li>
+                                </li> -->
+                                <li *ngIf="agent.created_at != null">
                                     <a href="#tab_1_3" data-toggle="tab">Cambiar contraseña</a>
                                 </li>
                             </ul>
@@ -71,91 +49,83 @@
                             <div class="tab-content">
                                 <!-- Informacion personal TAB -->
                                 <div class="tab-pane active" id="tab_1_1">
-                                    <form role="form" action="#">
+                                    <form #personalInformationForm="ngForm" role="form" (ngSubmit)="onSubmit()">
                                         <div class="form-group">
-                                            <label class="control-label">Nombres</label>
-                                            <input type="text" placeholder="Jonathan" class="form-control" /> </div>
-                                        <div class="form-group">
-                                            <label class="control-label">Apellidos</label>
-                                            <input type="text" placeholder="Oropeza Mendez" class="form-control" /> </div>
-                                        <div class="form-group">
-                                          <label class="col-md-3 control-label">Sucursal</label>
-                                            <div class="col-md-9">
-                                                        <select class="form-control">
-                                                    <option>Pacífico</option>
-                                                    <option>Bajío</option>
-                                                            <option>Centro</option>
-                                                    <option>Norte</option>
-                                                </select>
-                                            </div>
+                                            <label class="control-label">Nombre(s)</label>
+                                            <input [(ngModel)]="agent.name" type="text" class="form-control" name="name" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
                                         </div>
                                         <div class="form-group">
+                                            <label class="control-label">Apellido Paterno</label>
+                                            <input [(ngModel)]="agent.first_surname" type="text" class="form-control" name="first_surname" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Apellido Materno</label>
+                                            <input [(ngModel)]="agent.last_surname" type="text" class="form-control" name="last_surname" pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label class="control-label">Nombre de usuario</label>
+                                            <input [(ngModel)]="agent.username" type="text" class="form-control" name="username" required [readonly]="agent.created_at != null"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Email</label>
+                                            <input [(ngModel)]="agent.email" type="email" class="form-control" name="email" required/>
+                                        </div>
+                                        <hr>
+                                        <!-- <div class="form-group">
                                             <label class="control-label">Teléfono Móvil</label>
                                             <input type="text" placeholder="+1 646 580 PRUEBA (6284)" class="form-control" /> </div>
                                         <div class="form-group">
                                                 <label class="control-label">Teléfono Fijo</label>
-                                                <input type="text" placeholder="+1 646 580 PRUEBA (6284)" class="form-control" /> </div>
+                                                <input type="text" placeholder="+1 646 580 PRUEBA (6284)" class="form-control" /> </div> -->
                                         <div class="form-group">
-                                                    <label class="col-md-3 control-label">Sexo</label>
-                                                    <div class="col-md-9">
-                                                        <select class="form-control">
-                                                            <option>Maculino</option>
-                                                            <option>Femenino</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                            <label class="col-md-3 control-label">Sexo</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" [(ngModel)]="agent.gender" name="gender" required>
+                                                    <option value="m">Masculino</option>
+                                                    <option value="f">Femenino</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Estado civil</label>
-                                                            <div class="col-md-9">
-                                                                <select class="form-control">
-                                                                    <option>Soltero</option>
-                                                                    <option>Casado</option>
-                                                                    <option>Divorciado</option>
-                                                                    <option>Viudo</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
+                                            <label class="col-md-3 control-label">Estado civil</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" [(ngModel)]="agent.mariage_status" name="mariage_status" required>
+                                                    <option value="s">Soltero</option>
+                                                    <option value="c">Casado</option>
+                                                    <option value="d">Divorciado</option>
+                                                    <option value="v">Viudo</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label">Domicilio</label>
-                                            <input type="text" placeholder="Av.De la mancha 212" class="form-control" /> </div>
+                                            <input [(ngModel)]="agent.address" type="text" class="form-control" name="address" required pattern="[0-9a-zA-Z ñÑáéíóúÁÉÍÓÚ.#\s]*"/>
+                                        </div>
                                         <div class="form-group">
                                           <label class="control-label">Colonia</label>
-                                          <input type="text" placeholder="Independencia" class="form-control" /> </div>
+                                          <input [(ngModel)]="agent.colonia" type="text" class="form-control" name="colonia" required /> </div>
                                         <div class="form-group">
                                           <label class="control-label">Código postal</label>
-                                          <input type="text" placeholder="44731" class="form-control" /> </div>
+                                          <input [(ngModel)]="agent.cp" type="text" class="form-control" name="cp" required /> </div>
                                         <div class="form-group">
                                           <label class="control-label">Municipio</label>
-                                          <input type="text" placeholder="Guadalajara" class="form-control" /> </div>
+                                          <input [(ngModel)]="agent.municipio" type="text" class="form-control" name="municipio" required /> </div>
                                         <div class="form-group">
                                           <label class="control-label">Estado</label>
-                                          <input type="text" placeholder="Jalisco" class="form-control" /> </div>
+                                          <input [(ngModel)]="agent.estado" type="text" class="form-control" name="estado" required /> </div>
                                         <div class="form-group">
-                                          <label class="control-label">Pais</label>
-                                          <input type="text" placeholder="México" class="form-control" /> </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputFile" class="col-md-3 control-label">Curriculúm</label>
-                                            <div class="col-md-9">
-                                                <input type="file" id="exampleInputFile">
-                                                <p class="help-block"> Formato PDF  </p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputFile" class="col-md-3 control-label">Identificacion Oficial</label>
-                                            <div class="col-md-9">
-                                                <input type="file" id="exampleInputFile">
-                                                <p class="help-block"> Formato PDF o imagen admitidos </p>
-                                            </div>
-                                        </div>
+                                          <label class="control-label">País</label>
+                                          <input [(ngModel)]="agent.pais" type="text" class="form-control" name="pais" required /> </div>
                                         <div class="margiv-top-10">
-                                            <a href="javascript:;" class="btn green"> Guardar Cambios </a>
-                                            <a href="agents" class="btn default"> Cancelar </a>
+                                            <button type="submit" class="btn green" [disabled]="!personalInformationForm.form.valid"> Guardar Cambios </button>
+                                            <a [routerLink]="['/', 'usuarios']" class="btn default"> Cancelar </a>
                                         </div>
                                     </form>
                                 </div>
                                 <!-- Fin Informacion personal TAB -->
                                 <!-- Cambio Imagen TAB -->
-                                <div class="tab-pane" id="tab_1_2">
+                                <div class="tab-pane" id="tab_1_2"  *ngIf="agent.created_at != null">
                                     <form action="#" role="form">
                                         <div class="form-group">
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -180,16 +150,17 @@
                                 </div>
                                 <!-- Fin Cambio Imagen TAB -->
                                 <!-- Cambio de Contra TAB -->
-                                <div class="tab-pane" id="tab_1_3">
-                                    <form action="#">
+                                <div class="tab-pane" id="tab_1_3" *ngIf="agent.created_at != nulll">
+                                    <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                                        <div class="alert alert-danger" *ngIf="passwordForm.controls.confirmPassword.errors?.MatchPassword">Las contraseñas no coinciden.</div>
                                         <div class="form-group">
-                                            <label class="control-label">Nueva Contraseña</label>
-                                            <input type="password" class="form-control" /> </div>
+                                            <label class="control-label" >Nueva Contraseña</label>
+                                            <input type="password" class="form-control" formControlName="password" [formGroup]="passwordForm"/> </div>
                                         <div class="form-group">
-                                            <label class="control-label">Reescribe la nueva Contraseña</label>
-                                            <input type="password" class="form-control" /> </div>
+                                            <label class="control-label" >Reescribe la nueva Contraseña</label>
+                                            <input type="password" class="form-control" formControlName="confirmPassword" [formGroup]="passwordForm"/> </div>
                                         <div class="margin-top-10">
-                                            <a href="javascript:;" class="btn green"> Cambiar Contraseña</a>
+                                            <button type="submit" class="btn green" [disabled]="!passwordForm.valid"> Cambiar Contraseña</button>
                                             <a href="agents" class="btn default"> Cancelar </a>
                                         </div>
                                     </form>
