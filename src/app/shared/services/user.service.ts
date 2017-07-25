@@ -29,6 +29,14 @@ export class UserService extends Service {
 			             .map(res => res.json());
     }
 
+    createUser = (user: any) => {
+        let params  = JSON.stringify(user);
+        let headers = this.headers();
+
+        return this._http.post(this.url + 'user', params, { headers })
+                         .map(res => res.json());
+    }
+
     editUser = (id: Number, user: any) => {
         let params  = JSON.stringify(user);
         let headers = this.headers();

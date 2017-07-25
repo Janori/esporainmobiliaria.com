@@ -150,7 +150,7 @@
                                 </div>
                                 <!-- Fin Cambio Imagen TAB -->
                                 <!-- Cambio de Contra TAB -->
-                                <div class="tab-pane" id="tab_1_3" *ngIf="agent.created_at != nulll">
+                                <div class="tab-pane" id="tab_1_3" *ngIf="agent.created_at != null">
                                     <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
                                         <div class="alert alert-danger" *ngIf="passwordForm.controls.confirmPassword.errors?.MatchPassword">Las contraseñas no coinciden.</div>
                                         <div class="form-group">

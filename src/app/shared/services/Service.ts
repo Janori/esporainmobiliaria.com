@@ -7,14 +7,15 @@ export class Service {
 
     constructor() {
         if(!/localhost/.test(document.location.host))
-            this.url = 'http://esporainmobiliaria/api/'; // prod
+            this.url = 'http://api.esporainmobiliaria.com/'; // prod
         else
-            this.url = 'http://localhost:8000/api/'; // test
+            this.url = 'http://api.esporainmobiliaria.local/'; // test
     }
 
     headers = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
+
         if(lscache.get('authToken') !== null)
             headers.append("Authorization", lscache.get('authToken'));
 

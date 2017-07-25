@@ -5,6 +5,8 @@ import { PasswordValidation } from './password-validation';
 import { AgentService, BranchService } from '../../shared/services';
 import { User as Agent } from '../../shared/model/User';
 
+declare var bootbox: any;
+
 @Component({
     selector: 'app-agent-edit',
     templateUrl: './agent-form.component.html',
@@ -53,6 +55,23 @@ export class AgentEditComponent implements OnInit {
 				error => {
 					console.log(error);
 					alert('Hay un error en la petición');
+				}
+			);
+		});
+    }
+
+    onSubmit = () => {
+        this._route.params.forEach((params: Params) => {
+			let id = params['id'];
+
+			this._agentService.editUser(id, this.agent).subscribe(
+				response => {
+                    bootbox.alert(response.msg);
+                    this._router.navigate(['/usuarios']);
+				},
+				error => {
+					console.log(error);
+				    alert('Hay un error en la petición');
 				}
 			);
 		});
