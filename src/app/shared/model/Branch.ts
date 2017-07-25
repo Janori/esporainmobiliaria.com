@@ -1,10 +1,10 @@
-import { User } from './';
+import { User, Location } from './';
 
 export class Branch {
     public id: Number;
     public name: string;
     public location_id: Number;
-    public location: any; // TODO
+    public location: Location
     public user_id: Number;
     public user: User;
     public active: Number;
@@ -17,7 +17,7 @@ export class Branch {
         this.name = obj && obj.name || '';
         this.location_id = obj && obj.location_id || 0;
         this.location = obj && obj.location || null
-        this.user_id = obj && obj.user_id || Number;
+        this.user_id = obj && obj.user_id || 0;
         this.user = obj && obj.user || null;
         this.active = obj && obj.active || 0;
         this.extra_data = obj && obj.extra_data || '';

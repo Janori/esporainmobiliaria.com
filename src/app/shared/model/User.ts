@@ -43,6 +43,8 @@ export class User {
 		this.mariage_status = obj && obj.mariage_status || '';
 		this.address = obj && obj.address || '';
 		this.kind = obj && obj.kind || '';
+		this.branch_id = obj && obj.branch_id || null;
+		this.branch = obj && obj.sucursal || null;
 		this.created_at = obj && obj.created_at || null;
 		this.updated_at = obj && obj.updated_at || null;
 

@@ -117,6 +117,22 @@
                                         <div class="form-group">
                                           <label class="control-label">País</label>
                                           <input [(ngModel)]="agent.pais" type="text" class="form-control" name="pais" required /> </div>
+                                          <div class="form-group">
+                                              <label class="col-md-4 control-label">ID de la sucursal</label>
+                                              <div class="col-md-8">
+                                                  <input auto-complete
+                                                         type="text"
+                                                         [(ngModel)]="agent.branch_id"
+                                                         placeholder="Teclea el nombre o el id de la sucursal..."
+                                                         [source]="branches"
+                                                         list-formatter="name"
+                                                         select-value-of="id"
+                                                         display-property-name="id"
+                                                         class="form-control"
+                                                         name="branch"
+                                                         no-match-found-text="No se encontró una sucursal">
+                                              </div>
+                                          </div>
                                         <div class="margiv-top-10">
                                             <button type="submit" class="btn green" [disabled]="!personalInformationForm.form.valid"> Guardar Cambios </button>
                                             <a [routerLink]="['/', 'usuarios']" class="btn default"> Cancelar </a>
