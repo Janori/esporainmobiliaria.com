@@ -10,6 +10,7 @@ import { EnumWsPipe } from './pipes/enum-ws.pipe';
 
 import { DataTablesModule } from 'angular-datatables';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { AgmCoreModule } from "@agm/core";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,8 +20,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AgentsComponent } from './dashboard/agents/agents.component';
 import { AgentEditComponent } from './dashboard/agents/agent-edit.component';
 import { BranchesComponent } from './dashboard/branches/branches.component';
-import { BranchOfficeEditComponent } from './dashboard/branches/edit/branch-office-edit.component';
-import { BranchOfficeCreateComponent } from './dashboard/branches/create/branch-office-create.component';
+import { BranchOfficeEditComponent } from './dashboard/branches/branch-office-edit.component';
+import { BranchOfficeCreateComponent } from './dashboard/branches/branch-office-create.component';
 import { PropertiesComponent } from './dashboard/properties/properties.component';
 import { PropertyEditComponent } from './dashboard/properties/edit/property-edit.component';
 import { PropertyCreateComponent } from './dashboard/properties/create/property-create.component';
@@ -57,6 +58,10 @@ import { UserCreateComponent } from './dashboard/users/user-create.component';
     ReactiveFormsModule,
     HttpModule,
     DataTablesModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBUcyScyduTrgebqcKkOPL-WMlokSYIu4k",
+      libraries: ["places"]
+    }),
     NguiAutoCompleteModule,
     routing
   ],

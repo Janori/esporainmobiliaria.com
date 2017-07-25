@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Service } from './Service';
+import { User } from '../model';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -23,13 +24,19 @@ export class UserService extends Service {
 			             .map(res => res.json());
     }
 
+    getAllByKind = (kind: string) => {
+        let headers = this.headers();
+        return this._http.get(this.url + 'user/kind/' + kind, { headers })
+			             .map(res => res.json());
+    }
+
     getUser = (id: Number) => {
         let headers = this.headers();
         return this._http.get(this.url + 'user/' + id, { headers })
 			             .map(res => res.json());
     }
 
-    createUser = (user: any) => {
+    createUser = (user: User) => {
         let params  = JSON.stringify(user);
         let headers = this.headers();
 
@@ -37,7 +44,7 @@ export class UserService extends Service {
                          .map(res => res.json());
     }
 
-    editUser = (id: Number, user: any) => {
+    editUser = (id: Number, user: User) => {
         let params  = JSON.stringify(user);
         let headers = this.headers();
 

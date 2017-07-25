@@ -23,34 +23,45 @@
                             <div class="tab-content">
                                 <!-- Informacion personal TAB -->
                                 <div class="tab-pane active" id="tab_1_1">
-                                    <form role="form" action="#">
+                                    <form #branchForm="ngForm" (ngSubmit)="onSubmit()">
                                         <div class="form-group">
                                             <label class="control-label">Nombre de la sucursal</label>
-                                            <input type="text"  class="form-control" placeholder="Pacífico"/> </div>
+                                            <input [(ngModel)]="branch.name" type="text" class="form-control" name="name" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                        </div>
                                         <div class="form-group">
-                                            <label class="control-label">Gerente de la Sucursal</label>
-                                            <input type="text" class="form-control" placeholder="Jonathan Oropeza Mendez" /> </div>
+                                            <label class="control-label">Información extra</label>
+                                            <input [(ngModel)]="branch.extra_data" type="text" class="form-control" name="extra_data"/>
+                                        </div>
                                         <div class="form-group">
-                                            <label class="control-label">Domicilio</label>
-                                            <input type="text" class="form-control" placeholder="Av.De la mancha 322" /> </div>
+                                            <label class="col-md-4 control-label">Gerente ID de la sucursal</label>
+                                            <div class="col-md-8">
+                                                <input auto-complete
+                                                       type="text"
+                                                       [(ngModel)]="branch.user_id"
+                                                       placeholder="Teclea el nombre o el id del supervisor..."
+                                                       [source]="users"
+                                                       list-formatter="name"
+                                                       select-value-of="id"
+                                                       display-property-name="id"
+                                                       class="form-control"
+                                                       name="user"
+                                                       no-match-found-text="No se encontró un supervisor">
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Colonia</label>
-                                          <input type="text" class="form-control" placeholder="Moderna" /> </div>
+                                            <label class="control-label">Dirección</label>
+                                            <input placeholder="Busca una dirección" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search>
+                                        </div>
+                                        <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                                            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                                        </agm-map>
                                         <div class="form-group">
-                                          <label class="control-label">Código postal</label>
-                                          <input type="text" class="form-control" placeholder="44371" /> </div>
-                                        <div class="form-group">
-                                          <label class="control-label">Municipio</label>
-                                          <input type="text" class="form-control" placeholder="Guadalajara" /> </div>
-                                        <div class="form-group">
-                                          <label class="control-label">Estado</label>
-                                          <input type="text" class="form-control" placeholder="Jalisco" /> </div>
-                                        <div class="form-group">
-                                          <label class="control-label">Pais</label>
-                                          <input type="text" class="form-control" placeholder="México" /> </div>
-                                        <div class="margiv-top-10">
-                                            <a href="javascript:;" class="btn green"> Guardar Cambios </a>
-                                            <a [routerLink]="['/', 'sucursales']" class="btn default"> Cancelar </a>
+                                            <label class="control-label">Activo</label>
+                                                    <input type="checkbox" [checked]="branch.active" [(ngModel)]="branch.active" name="active">
+                                        </div>
+                                        <div class="margiv-top-10" style="margin-top: 10px;">
+                                            <button type="submit" class="btn green" [disabled]="!branchForm.form.valid"> Guardar Cambios </button>
+                                            <a [routerLink]="['/', 'usuarios']" class="btn default"> Cancelar </a>
                                         </div>
                                     </form>
                                 </div>

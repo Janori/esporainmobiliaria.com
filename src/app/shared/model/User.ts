@@ -28,6 +28,9 @@ export class User {
 	//
 
 	public static NO_USER_PATH = 'images/default-user-image.png';
+	public static KIND_ADMIN = 'a';
+	public static KIND_SUPERVISOR = 's';
+	public static KIND_AGENT = 'u';
 
 	constructor(obj?: any) {
 		this.id = obj && obj.id || 0;
@@ -53,5 +56,9 @@ export class User {
 		this.municipio = obj && obj.municipio || '';
 		this.estado = obj && obj.estado || '';
 		this.pais = obj && obj.pais || '';
+	}
+
+	get full_name() {
+		return `${this.name} ${this.first_surname} ${this.last_surname}`;
 	}
 }
