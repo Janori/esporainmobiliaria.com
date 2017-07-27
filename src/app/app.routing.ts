@@ -10,10 +10,10 @@ import { AgentEditComponent } from './dashboard/agents/agent-edit.component';
 import { BranchesComponent } from './dashboard/branches/branches.component';
 import { BranchOfficeEditComponent } from './dashboard/branches/branch-office-edit.component';
 import { BranchOfficeCreateComponent } from './dashboard/branches/branch-office-create.component';
-import { PropertiesComponent } from './dashboard/properties/properties.component';
-import { PropertyEditComponent } from './dashboard/properties/edit/property-edit.component';
-import { PropertyCreateComponent } from './dashboard/properties/create/property-create.component';
-import { PropertyDetailComponent } from './dashboard/properties/detail/property-detail.component';
+import { BuildingsComponent } from './dashboard/buildings/buildings.component';
+import { BuildingEditComponent } from './dashboard/buildings/building-edit.component';
+import { BuildingCreateComponent } from './dashboard/buildings/building-create.component';
+import { BuildingDetailComponent } from './dashboard/buildings/building-detail.component';
 import { UsersComponent } from './dashboard/users/users.component';
 import { UserEditComponent } from './dashboard/users/user-edit.component';
 import { UserCreateComponent } from './dashboard/users/user-create.component';
@@ -44,10 +44,10 @@ const appRoutes : Routes = [
             {
                 path: 'inmuebles',
                 children: [
-                    { path: '', component: PropertiesComponent },
-                    { path: 'crear', component: PropertyCreateComponent },
-                    { path: ':id', component: PropertyDetailComponent},
-                    { path: ':id/editar', component: PropertyEditComponent }
+                    { path: '', component: BuildingsComponent },
+                    { path: 'crear', component: BuildingCreateComponent },
+                    { path: ':id', component: BuildingDetailComponent},
+                    { path: ':id/editar', component: BuildingEditComponent }
                 ],
             },
             {
