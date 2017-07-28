@@ -9,7 +9,7 @@ export class Service {
         if(!/localhost/.test(document.location.host))
             this.url = 'http://api.esporainmobiliaria.com/'; // prod
         else
-            this.url = 'http://api.esporainmobiliaria.local/'; // test
+            this.url = 'http://localhost:8000/api/'; // test
     }
 
     headers = () => {
