@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { routing, appRoutingProviders} from './app.routing';
 import { AuthService } from './shared/security/auth.service';
@@ -33,6 +34,8 @@ import { BuildingDetailComponent } from './dashboard/buildings/building-detail.c
 import { UsersComponent } from './dashboard/users/users.component';
 import { UserEditComponent } from './dashboard/users/user-edit.component';
 import { UserCreateComponent } from './dashboard/users/user-create.component';
+import { GoalCardsComponent } from './dashboard/home/items/goal-cards/goal-cards.component';
+import { HomeGraphicComponent } from './dashboard/home/items/home-graphic/home-graphic.component';
 
 
 @NgModule({
@@ -54,6 +57,8 @@ import { UserCreateComponent } from './dashboard/users/user-create.component';
     UsersComponent,
     UserEditComponent,
     UserCreateComponent,
+    GoalCardsComponent,
+    HomeGraphicComponent,
     EnumWsPipe,
     KeysPipe
   ],
@@ -61,6 +66,7 @@ import { UserCreateComponent } from './dashboard/users/user-create.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     HttpModule,
     DataTablesModule,
     AgmCoreModule.forRoot({
