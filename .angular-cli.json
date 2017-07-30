@@ -24,6 +24,7 @@
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../node_modules/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css",
         "../node_modules/datatables.net-dt/css/jquery.dataTables.css",
+        "../node_modules/angular2-lightbox/lightbox.css",
         "./styles.css"
       ],
       "scripts": [

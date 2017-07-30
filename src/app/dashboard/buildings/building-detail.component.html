@@ -11,34 +11,13 @@
                       <div class="portlet-title">
                           <div class="caption font-dark">
                               <i class="icon-home font-dark"></i>
-                              <span class="caption-subject bold uppercase">Casa #2245</span>
-                          </div>
-                          <div class="actions">
-                              <div class="actions">
-                                  <a href="inmuebles" class="btn btn-circle btn-default">
-                                      <i class="fa fa-arrow-left"></i>Regresar</a>
-                              </div>
+                              <span class="caption-subject bold uppercase">{{ title }}</span>
                           </div>
                       </div>
                       <div class="portlet-body">
-                        <section class="slider">
-                          <div class="flexslider">
-                            <ul class="slides">
-                              <li data-thumb="images/1.jpg">
-                                <img src="images/1.jpg" />
-                              </li>
-                              <li data-thumb="images/2.jpg">
-                                <img src="images/2.jpg" />
-                              </li>
-                              <li data-thumb="images/3.jpg">
-                                <img src="images/3.jpg" />
-                              </li>
-                              <li data-thumb="images/4.jpg">
-                                <img src="images/4.jpg" />
-                              </li>
-                            </ul>
+                          <div *ngFor="let image of _albums; let i=index" style="cursor: pointer;">
+                            <img class="img-thumbnail" [src]="image.thumb" (click)="open(i)"/>
                           </div>
-                        </section>
                       </div>
                       <div class="portlet-title">
                           <div class="caption font-dark">
@@ -46,64 +25,48 @@
                           </div>
                       </div>
                       <div class="portlet-body">
-                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
-                             <thead>
-                                 <tr>
-                                     <th>Tipo</th>
-                                     <th>Superficie Terreno</th>
-                                     <th>Superficie Construida</th>
-                                     <th>Recámaras</th>
-                                     <th>Baños</th>
-                                     <th>Estacionamientos</th>
-                                     <th>Patios</th>
-                                     <th>Edad</th>
-                                     <th>Costo Predial</th>
-                                     <th>Precio</th>
-                                     <th>Precio P/Z</th>
-                                     <th>Acciones</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                 <tr class="odd gradeX">
-                                     <td>Venta</td>
-                                     <td>87 m2</td>
-                                     <td>67 m2</td>
-                                     <td>4</td>
-                                     <td>2</td>
-                                     <td>1</td>
-                                     <td>1</td>
-                                     <td>5 Años</td>
-                                     <td>$350 M.N.</td>
-                                     <td>$350,000 M.N.</td>
-                                     <td>$1,500 m2</td>
-                                     <td>
-                                         <div class="btn-group">
-                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Opciones
-                                                 <i class="fa fa-angle-down"></i>
-                                             </button>
-                                             <ul class="dropdown-menu pull-left" role="menu">
-                                                 <li>
-                                                     <a href="agentedit">
-                                                         <i class="icon-handbag"></i> Vender </a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="javascript:;">
-                                                         <i class="icon-envelope"></i> Enviar </a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="agentedit">
-                                                         <i class="icon-note"></i> Editar </a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="javascript:;">
-                                                         <i class="icon-trash"></i> Eliminar </a>
-                                                 </li>
-                                             </ul>
-                                         </div>
-                                     </td>
-                                 </tr>
-                             </tbody>
-                         </table>
+                          <div class="container-fluid">
+                              <div *ngIf="building.land_id != null">
+                                <div class="row" *ngFor="let key of building.land | keys">
+                                    <div class="col-sm-6" style="text-align: right; font-weight:bold;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
+                                        <p [innerHTML]="keysEnum.land[key]"></p>
+                                    </div>
+                                    <div class="col-sm-6" style="" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
+                                        <p [innerHTML]="response(key, building.land[key])"></p>
+                                    </div>
+                                </div>
+                              </div>
+                              <div *ngIf="building.warehouse_id != null">
+                                <div class="row" *ngFor="let key of building.warehouse | keys">
+                                    <div class="col-sm-6" style="text-align: right; font-weight:bold;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
+                                        <p [innerHTML]="keysEnum.warehouse[key]"></p>
+                                    </div>
+                                    <div class="col-sm-6" style="" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
+                                        <p [innerHTML]="response(key, building.warehouse[key])"></p>
+                                    </div>
+                                </div>
+                              </div>
+                              <div *ngIf="building.office_id != null">
+                                <div class="row" *ngFor="let key of building.office | keys">
+                                    <div class="col-sm-6" style="text-align: right; font-weight:bold;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
+                                        <p [innerHTML]="keysEnum.office[key]"></p>
+                                    </div>
+                                    <div class="col-sm-6" style="" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
+                                        <p [innerHTML]="response(key, building.office[key])"></p>
+                                    </div>
+                                </div>
+                              </div>
+                              <div *ngIf="building.house_id != null">
+                                <div class="row" *ngFor="let key of building.house | keys">
+                                    <div class="col-sm-6" style="text-align: right; font-weight:bold;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
+                                        <p [innerHTML]="keysEnum.house[key]"></p>
+                                    </div>
+                                    <div class="col-sm-6" style="" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
+                                        <p [innerHTML]="response(key, building.house[key])"></p>
+                                    </div>
+                                </div>
+                              </div>
+                          </div>
                       </div>
                       <div class="portlet-title">
                           <div class="caption">
@@ -114,7 +77,7 @@
                       <div class="portlet-body">
                           <div class="row">
                               <div class="col-md-12">
-                                  <p> El inmueble se encuentra remodelado, la remodelacion se hizo en el año 2016 incorporando la cocina integral, cambio de baños y la fuente del jardin. Asi mismo cada año lleva un proceso de impermiabilización termica lo que favorece a la temperatura interna de la casa.
+                                  <p> {{ building.extra_data }}</p>
                               </div>
                           </div>
                       </div>
@@ -129,80 +92,12 @@
                           </div>
                       </div>
                       <div class="portlet-body">
-                          <div id="gmap_basic" class="gmaps"> </div>
+                          <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                              <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                          </agm-map>
                       </div>
                   </div>
                   <!-- END BASIC PORTLET-->
-              </div>
-              <div class="col-md-6">
-                  <!-- BEGIN MARKERS PORTLET-->
-                  <div class="portlet light portlet-fit bordered">
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <i class=" icon-pin font-green"></i>
-                            <span class="caption-subject font-green bold uppercase">Puntos de interés</span>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <div class="mt-element-list">
-                            <div class="mt-list-head list-simple font-white bg-green">
-                                <div class="list-head-title-container">
-                                    <h3 class="list-title">Accesibles a la zona</h3>
-                                </div>
-                            </div>
-                            <div class="mt-list-container list-simple">
-                                <ul>
-                                    <li class="mt-list-item">
-                                        <div class="list-icon-container done">
-                                            <i class="icon-check"></i>
-                                        </div>
-                                        <div class="list-datetime"> 1KM </div>
-                                        <div class="list-item-content">
-                                            <h3 class="uppercase">
-                                                <a href="javascript:;">Escuela primaria pedregal </a>
-                                            </h3>
-                                        </div>
-                                    </li>
-                                    <li class="mt-list-item">
-                                        <div class="list-icon-container done">
-                                            <i class="icon-check"></i>
-                                        </div>
-                                        <div class="list-datetime"> 750 MTS </div>
-                                        <div class="list-item-content">
-                                            <h3 class="uppercase">
-                                                <a href="javascript:;">Peluqueria Divinas </a>
-                                            </h3>
-                                        </div>
-                                    </li>
-                                    <li class="mt-list-item">
-                                        <div class="list-icon-container done">
-                                            <i class="icon-check"></i>
-                                        </div>
-                                        <div class="list-datetime">500 MTS</div>
-                                        <div class="list-item-content">
-                                            <h3 class="uppercase">
-                                                <a href="javascript:;">Gasolineria </a>
-                                            </h3>
-                                        </div>
-                                    </li>
-                                    <li class="mt-list-item">
-                                        <div class="list-icon-container done">
-                                            <i class="icon-check"></i>
-                                        </div>
-                                        <div class="list-datetime"> 500 MTS</div>
-                                        <div class="list-item-content">
-                                            <h3 class="uppercase">
-                                                <a href="javascript:;">Auto Servicio OXXO </a>
-                                            </h3>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                  <!-- END MARKERS PORTLET-->
               </div>
             </div>
         </div>

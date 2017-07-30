@@ -7,10 +7,14 @@ import { routing, appRoutingProviders} from './app.routing';
 import { AuthService } from './shared/security/auth.service';
 import { AuthGuard } from './shared/security/auth.guard';
 import { EnumWsPipe } from './pipes/enum-ws.pipe';
+import { KeysPipe } from './pipes/keys.pipe';
 
 import { DataTablesModule } from 'angular-datatables';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { AgmCoreModule } from "@agm/core";
+import { MyDatePickerModule } from 'mydatepicker';
+import { ImageUploadModule } from 'angular2-image-upload';
+import { LightboxModule } from 'angular2-lightbox';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -51,6 +55,7 @@ import { UserCreateComponent } from './dashboard/users/user-create.component';
     UserEditComponent,
     UserCreateComponent,
     EnumWsPipe,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,10 @@ import { UserCreateComponent } from './dashboard/users/user-create.component';
       apiKey: "AIzaSyBUcyScyduTrgebqcKkOPL-WMlokSYIu4k",
       libraries: ["places"]
     }),
+    ImageUploadModule.forRoot(),
+    MyDatePickerModule,
     NguiAutoCompleteModule,
+    LightboxModule,
     routing
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard],
