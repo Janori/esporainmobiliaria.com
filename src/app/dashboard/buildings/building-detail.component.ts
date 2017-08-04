@@ -3,7 +3,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BuildingService } from '../../shared/services';
 import { Building } from '../../shared/model';
 import { MapsAPILoader } from '@agm/core';
-import { Lightbox } from 'angular2-lightbox';
 import {} from '@types/googlemaps';
 import {} from '@types/bootbox';
 
@@ -25,14 +24,18 @@ export class BuildingDetailComponent implements OnInit {
     public longitude: number;
     public zoom: number;
     public keysEnum: any = {};
-    public _albums: Array<any> = [];
+
+    public myInterval: number = 1500;
+    public slides: any[] = [];
+    public activeSlideIndex: number;
+    public noWrapSlides:boolean = false;
+
 
     constructor(
         private _buildingService: BuildingService,
         private _router: Router,
         private _route: ActivatedRoute,
-        private mapsAPILoader: MapsAPILoader,
-        private _lightbox: Lightbox
+        private mapsAPILoader: MapsAPILoader
     ) {
         this.title = "";
         this.building = new Building();
@@ -83,17 +86,11 @@ export class BuildingDetailComponent implements OnInit {
                     this.longitude = parseFloat(this.building.land.location.longitude);
                     this.title = 'Inmueble #' + this.building.id;
 
-                    this.building.images.forEach((image) => {
-                        const src = this.url + 'public/images/bld/' + image.path;
-                        // const caption = 'Image ' + i + ' caption here';
-                        const thumb = this.url + 'public/images/bld/thumb_' + image.path;
-                        const album = {
-                        src: src,
-                        caption: null,
-                        thumb: thumb
-                        };
 
-                        this._albums.push(album);
+                    this.building.images.forEach((image) => {
+                        this.slides.push({
+                         image: this.url + 'public/images/bld/' + image.path
+                       });
                     });
 				},
 				error => {
@@ -123,10 +120,4 @@ export class BuildingDetailComponent implements OnInit {
                 return value;
         }
     }
-
-    open(index: number): void {
-    // open lightbox
-    this._lightbox.open(this._albums, index);
-  }
-
 }

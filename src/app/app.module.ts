@@ -16,6 +16,7 @@ import { AgmCoreModule } from "@agm/core";
 import { MyDatePickerModule } from 'mydatepicker';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { LightboxModule } from 'angular2-lightbox';
+import { CarouselModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -74,6 +75,7 @@ import { HomeGraphicComponent } from './dashboard/home/items/home-graphic/home-g
       libraries: ["places"]
     }),
     ImageUploadModule.forRoot(),
+    CarouselModule.forRoot(),
     MyDatePickerModule,
     NguiAutoCompleteModule,
     LightboxModule,

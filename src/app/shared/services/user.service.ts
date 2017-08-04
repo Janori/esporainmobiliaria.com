@@ -56,7 +56,7 @@ export class UserService extends Service {
         let params  = JSON.stringify({password: password});
         let headers = this.headers();
 
-        return this._http.put(this.url + 'user/change_password/' + id, params, { headers })
+        return this._http.put(this.url + 'user/change-password/' + id, params, { headers })
                          .map(res => res.json());
     }
 

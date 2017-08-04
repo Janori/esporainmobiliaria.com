@@ -49,7 +49,7 @@ export class BuildingService extends Service {
 
     deleteImage = (id: number) => {
         let headers = this.headers();
-        return this._http.delete(this.url + 'building/delete/' + id, { headers })
+        return this._http.delete(this.url + 'building/delete-image/' + id, { headers })
                          .map(res => res.json());
     }
 }

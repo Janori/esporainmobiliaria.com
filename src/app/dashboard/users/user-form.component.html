@@ -65,7 +65,7 @@
                                         <hr>
                                         <div class="form-group">
                                             <label class="control-label">Nombre de usuario</label>
-                                            <input [(ngModel)]="user.username" type="text" class="form-control" name="username" required [readonly]="user.created_at != null"/>
+                                            <input [(ngModel)]="user.username" type="text" class="form-control" name="username" required/>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">Tipo de usuario</label>
@@ -81,7 +81,7 @@
                                             <label class="control-label">Email</label>
                                             <input [(ngModel)]="user.email" type="email" class="form-control" name="email" required/>
                                         </div>
-                                        <div class="form-group" [hidden]="user.created_at == null">
+                                        <div class="form-group" *ngIf="user.created_at == null">
                                             <label class="control-label">Contraseña</label>
                                             <input [(ngModel)]="user.password" type="password" class="form-control" name="password" required/>
                                         </div>
