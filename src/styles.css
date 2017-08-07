@@ -22,3 +22,31 @@
 .building-characteristics p {
     margin: 5px 0px;
 }
+
+.irs-line-left {
+  background: #e1e4e9 !important;
+  width: 100%;
+}
+
+.budget-page .irs-line-right {
+  background: #FF0000;
+  width: 40%;
+}
+
+.irs-slider.to, .irs-slider.from,
+.irs-from, .irs-to, .irs-single {
+    background: #3b3f51;
+}
+
+.irs-from:after, .irs-to:after, .irs-single:after {
+    border-top-color: #3b3f51;
+}
+
+.budget-page .irs-line-mid {
+  width: 0 !important;
+}
+
+.irs-bar {
+  /*background: #FFBF00;*/
+  background: #5c9acf;
+}

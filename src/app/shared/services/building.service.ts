@@ -52,4 +52,11 @@ export class BuildingService extends Service {
         return this._http.delete(this.url + 'building/delete-image/' + id, { headers })
                          .map(res => res.json());
     }
+
+    getFilterBuildings = (filter: any) => {
+        let params  = JSON.stringify(filter);
+        let headers = this.headers();
+        return this._http.post(this.url + 'buildings/filter', params, { headers })
+                         .map(res => res.json());
+    }
 }

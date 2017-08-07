@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+
 import { BuildingService } from '../../shared/services';
-import { Building } from '../../shared/model';
+import { Building, Land } from '../../shared/model';
 import { Subject } from 'rxjs/Rx';
 import {} from '@types/bootbox';
 
@@ -14,9 +15,20 @@ declare var lscache: any;
 
 export class BuildingsComponent implements OnInit {
     public buildings: Building[];
+    public kind: string;
+    public filter: any = {};
+
+    @ViewChild('type') type: ElementRef;
+    @ViewChild('disponibility') disponibility: ElementRef;
+    @ViewChild('priceFilter') price: any;
+    @ViewChild('surfaceFilter') surface: any;
+    @ViewChild('bathFilter') baths: any;
+    @ViewChild('roomFilter') rooms: any;
+
     constructor(
-        private _buildingService: BuildingService
-    ) { }
+        private _buildingService: BuildingService,
+    ) {
+    }
 
     ngOnInit() {
         this.getAllBuildings();
@@ -66,5 +78,40 @@ export class BuildingsComponent implements OnInit {
                 }
             }
         });
+    }
+
+    setType = ($event) => {
+        let type = $event.target.value;
+        this.kind = type;
+        console.log(this.kind);
+    }
+
+    applyFilters = () => {
+        this.filter = {};
+        this.filter.type = this.type.nativeElement.value;
+        this.filter.disponibility = this.disponibility.nativeElement.value;
+        this.filter.price = {from: this.price.from, to: this.price.to}
+        this.filter.surface = {from: this.surface.from, to: this.surface.to}
+        if(this.filter.type == 'Oficina' || this.filter.type == 'Casa')
+            this.filter.baths = {from: this.baths.from, to: this.baths.to}
+        if(this.filter.type == 'Casa')
+            this.filter.rooms = {from: this.rooms.from, to: this.rooms.to}
+
+        this._buildingService.getFilterBuildings(this.filter).subscribe(
+            result => {
+                let buildings = result.data;
+
+                buildings.forEach((building, i, buildings) => {
+                    buildings[i] = new Building(building);
+                    buildings[i].land = new Land(building);
+                });
+
+                this.buildings = buildings;
+            },
+            error => {
+                console.log(error);
+                alert('Hay un error en la petición');
+            }
+        );
     }
 }

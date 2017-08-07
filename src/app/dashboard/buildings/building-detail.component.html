@@ -15,7 +15,7 @@
                           </div>
                       </div>
                       <div class="row">
-                          <div class="col-md-8">
+                          <div class="col-md-12">
                               <div class="portlet-body">
                                   <carousel [interval]="myInterval" [noWrap]="noWrapSlides" [(activeSlide)]="activeSlideIndex">
                                       <slide *ngFor="let slide of slides; let index=index">
@@ -24,6 +24,8 @@
                                   </carousel>
                               </div>
                           </div>
+                      </div>
+                      <div class="row" style="margin-top: 30px;">
                           <div class="col-md-4">
                               <div class="portlet-title">
                                   <div class="caption font-dark">
@@ -34,40 +36,44 @@
                                   <div class="container-fluid building-characteristics">
                                       <div *ngIf="building.land_id != null">
                                         <div class="row" *ngFor="let key of building.land | keys">
-                                            <div class="col-sm-6" style="text-align: right; font-weight:bold;font-size: 13px;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
+                                            <div class="col-sm-6" style="font-weight:bold;font-size: 13px;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
                                                 <p [innerHTML]="keysEnum.land[key]"></p>
                                             </div>
-                                            <div class="col-sm-6" style="color: #5b9bd1;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
+                                            <div class="col-sm-6" style="text-align: right; color: #5b9bd1;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1 && key != 'price'">
                                                 <p [innerHTML]="response(key, building.land[key])"></p>
+                                            </div>
+
+                                            <div class="col-sm-6" style="text-align: right;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1 && key == 'price'">
+                                                <span class="label label-sm label-primary" [innerHTML]="response(key, building.land[key])"></span>
                                             </div>
                                         </div>
                                       </div>
                                       <div *ngIf="building.warehouse_id != null">
                                         <div class="row" *ngFor="let key of building.warehouse | keys">
-                                            <div class="col-sm-6" style="text-align: right; font-weight:bold;font-size: 13px;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
+                                            <div class="col-sm-6" style="font-weight:bold;font-size: 13px;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
                                                 <p [innerHTML]="keysEnum.warehouse[key]"></p>
                                             </div>
-                                            <div class="col-sm-6" style="color: #5b9bd1;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
+                                            <div class="col-sm-6" style="text-align: right; color: #5b9bd1;" *ngIf="['id', 'location', 'location_id'].indexOf(key) == -1">
                                                 <p [innerHTML]="response(key, building.warehouse[key])"></p>
                                             </div>
                                         </div>
                                       </div>
                                       <div *ngIf="building.office_id != null">
                                         <div class="row" *ngFor="let key of building.office | keys">
-                                            <div class="col-sm-6" style="text-align: right; font-weight:bold;font-size: 13px;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
+                                            <div class="col-sm-6" style="font-weight:bold;font-size: 13px;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
                                                 <p [innerHTML]="keysEnum.office[key]"></p>
                                             </div>
-                                            <div class="col-sm-6" style="color: #5b9bd1;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
+                                            <div class="col-sm-6" style="text-align: right; color: #5b9bd1;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
                                                 <p [innerHTML]="response(key, building.office[key])"></p>
                                             </div>
                                         </div>
                                       </div>
                                       <div *ngIf="building.house_id != null">
                                         <div class="row" *ngFor="let key of building.house | keys">
-                                            <div class="col-sm-6" style="text-align: right; font-weight:bold;font-size: 13px;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
+                                            <div class="col-sm-6" style="font-weight:bold;font-size: 13px;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
                                                 <p [innerHTML]="keysEnum.house[key]"></p>
                                             </div>
-                                            <div class="col-sm-6" style="color: #5b9bd1;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
+                                            <div class="col-sm-6" style="text-align: right; color: #5b9bd1;" *ngIf="['id', 'location', 'location_id', 'yards', 'kind'].indexOf(key) == -1">
                                                 <p [innerHTML]="response(key, building.house[key])"></p>
                                             </div>
                                         </div>
@@ -75,22 +81,25 @@
                                   </div>
                               </div>
                           </div>
-                      </div>
-                      <div class="portlet-title">
-                          <div class="caption">
-                              <i class="icon-speech font-blue-sharp"></i>
-                              <span class="caption-subject font-blue-sharp bold uppercase">Observaciones</span>
-                          </div>
-                      </div>
-                      <div class="portlet-body">
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <p> {{ building.extra_data }}</p>
+                          <div class="col-md-8">
+                              <div class="portlet-title">
+                                  <div class="caption">
+                                      <i class="icon-speech font-blue-sharp"></i>
+                                      <span class="caption-subject font-blue-sharp bold uppercase">Observaciones</span>
+                                  </div>
+                              </div>
+                              <div class="portlet-body">
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                          <p> {{ building.extra_data }}</p>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
                       </div>
+                  </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                   <!-- BEGIN BASIC PORTLET-->
                   <div class="portlet light portlet-fit bordered">
                       <div class="portlet-title">

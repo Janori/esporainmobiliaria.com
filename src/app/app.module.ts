@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { routing, appRoutingProviders} from './app.routing';
 import { AuthService } from './shared/security/auth.service';
@@ -17,6 +16,8 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { LightboxModule } from 'angular2-lightbox';
 import { CarouselModule } from 'ngx-bootstrap';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { IonRangeSliderModule } from "ng2-ion-range-slider";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -79,6 +80,7 @@ import { HomeGraphicComponent } from './dashboard/home/items/home-graphic/home-g
     MyDatePickerModule,
     NguiAutoCompleteModule,
     LightboxModule,
+    IonRangeSliderModule,
     routing
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard],

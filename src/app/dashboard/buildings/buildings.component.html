@@ -1,6 +1,118 @@
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption font-dark">
+                                <i class="icon-home font-dark"></i>
+                                <span class="caption-subject bold uppercase"> Busca tu inmueble</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Tipo de inmueble</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" (change)="setType($event)" #type>
+                                                <option value="Terreno">Terreno</option>
+                                                <option value="Almacen">Almacén</option>
+                                                <option value="Oficina">Oficina</option>
+                                                <option value="Casa">Casa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Disponibilidad</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" #disponibility>
+                                                <option>Renta</option>
+                                                <option>Venta</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <span class="caption-subject font-dark sbold uppercase">Precio</span>
+                                    <ion-range-slider #priceFilter
+                                        type="double"
+                                        min="0"
+                                        max="20000000"
+                                        from="250000"
+                                        from_shadow="true"
+                                        to="20000000"
+                                        to_shadow="true"
+                                        grid="true"
+                                        grid_num="5"
+                                        prefix="$ "
+                                        postfix=" M.N"
+                                        step="250000"
+                                        decorate_both="false">
+                                    </ion-range-slider>
+                                    <span class="caption-subject font-dark sbold uppercase">Superficie</span>
+                                    <ion-range-slider #surfaceFilter
+                                        type="double"
+                                        min="0"
+                                        max="250000"
+                                        from="10000"
+                                        from_shadow="true"
+                                        to="250000"
+                                        to_shadow="true"
+                                        grid="true"
+                                        grid_num="5"
+                                        postfix=" m<sup>2</sup>"
+                                        step="1000"
+                                        decorate_both="false">
+                                    </ion-range-slider>
+                                    <span class="caption-subject font-dark sbold uppercase">Baños</span>
+                                    <ion-range-slider #bathFilter
+                                        type="double"
+                                        min="0"
+                                        max="10"
+                                        from="0"
+                                        from_shadow="true"
+                                        to="5"
+                                        to_shadow="true"
+                                        grid="true"
+                                        grid_num="5"
+                                        step="1"
+                                        decorate_both="false">
+                                    </ion-range-slider>
+                                    <span class="caption-subject font-dark sbold uppercase">Cuartos</span>
+                                    <ion-range-slider #roomFilter
+                                        type="double"
+                                        min="0"
+                                        max="10"
+                                        from="0"
+                                        from_shadow="true"
+                                        to="5"
+                                        to_shadow="true"
+                                        grid="true"
+                                        grid_num="5"
+                                        step="1"
+                                        decorate_both="false">
+                                    </ion-range-slider>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button type="submit" class="btn green" (click)="applyFilters()">Aplicar filtros</button>
+                                            <button type="button" class="btn default" (click)="getAllBuildings()">Eliminar filtros</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
           <div class="row">
               <div class="col-md-12">
                   <div class="portlet light bordered">
