@@ -17,9 +17,12 @@ import { BuildingDetailComponent } from './dashboard/buildings/building-detail.c
 import { UsersComponent } from './dashboard/users/users.component';
 import { UserEditComponent } from './dashboard/users/user-edit.component';
 import { UserCreateComponent } from './dashboard/users/user-create.component';
+import { LockscreenComponent } from './dashboard/lockscreen/lockscreen.component';
+import { GeolocationComponent } from './dashboard/geolocation/geolocation.component';
 
 const appRoutes : Routes = [
     { path: 'login', component: LoginComponent },
+    { path: 'lockscreen', component: LockscreenComponent},
     {
         path: '',
         component: DashboardComponent,
@@ -58,6 +61,7 @@ const appRoutes : Routes = [
                     { path: ':id/editar', component: UserEditComponent }
                 ],
             },
+            { path: 'geolocalizacion', component: GeolocationComponent },
             { path: '**', component: HomeComponent }
         ],
         canActivate: [AuthGuard]

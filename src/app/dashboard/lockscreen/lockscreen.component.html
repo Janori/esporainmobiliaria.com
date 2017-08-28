@@ -1,0 +1,31 @@
+<div class="page-lock">
+    <div class="page-logo">
+        <a class="brand" href="index.html">
+            <img src="../assets/layout/img/logo-light.png" alt="logo" /> </a>
+    </div>
+    <div class="page-body">
+        <div class="lock-head"> Sesión Bloqueada </div>
+        <div class="lock-body">
+            <div class="lock-cont">
+                <div class="lock-item">
+                    <div class="pull-left lock-avatar-block">
+                        <img src="{{ this.url + 'public/' + user.img_path }}" class="lock-avatar"> </div>
+                </div>
+                <div class="lock-item lock-item-full">
+                    <form class="lock-form pull-left" [formGroup]="lockscreenForm" (ngSubmit)="tryUnlock()">
+                        <h4>{{ user.full_name }}</h4>
+                        <div class="form-group">
+                            <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Contraseña" name="password" formControlName="password" [formGroup]="lockscreenForm"/> </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn red uppercase">Iniciar sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="lock-bottom">
+            <a routerLink="['/', 'login']">¿No eres {{ user.full_name }}?</a>
+        </div>
+    </div>
+    <div class="page-footer-custom">  2017 &copy; IT Networks.  </div>
+</div>

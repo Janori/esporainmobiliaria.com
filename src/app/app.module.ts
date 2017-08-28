@@ -38,6 +38,8 @@ import { UserEditComponent } from './dashboard/users/user-edit.component';
 import { UserCreateComponent } from './dashboard/users/user-create.component';
 import { GoalCardsComponent } from './dashboard/home/items/goal-cards/goal-cards.component';
 import { HomeGraphicComponent } from './dashboard/home/items/home-graphic/home-graphic.component';
+import { LockscreenComponent } from './dashboard/lockscreen/lockscreen.component';
+import { GeolocationComponent } from './dashboard/geolocation/geolocation.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { HomeGraphicComponent } from './dashboard/home/items/home-graphic/home-g
     GoalCardsComponent,
     HomeGraphicComponent,
     EnumWsPipe,
-    KeysPipe
+    KeysPipe,
+    LockscreenComponent,
+    GeolocationComponent
   ],
   imports: [
     BrowserModule,
