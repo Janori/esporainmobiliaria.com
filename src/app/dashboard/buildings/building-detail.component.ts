@@ -26,7 +26,7 @@ export class BuildingDetailComponent implements OnInit {
     public zoom: number;
     public keysEnum: any = {};
 
-    public myInterval: number = 1500;
+    public myInterval: number = 5000;
     public slides: any[] = [];
     public activeSlideIndex: number;
     public noWrapSlides:boolean = false;
