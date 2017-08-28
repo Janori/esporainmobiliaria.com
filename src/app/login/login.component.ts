@@ -6,6 +6,7 @@ import { AuthService }from '../shared/security/auth.service';
 
 declare var $:any;
 declare var lscache:any;
+declare var toastr:any;
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
         private _authService : AuthService,
         private _router: Router
     ) {
+        lscache.flush();
         this.user = new User();
     }
 
@@ -31,13 +33,17 @@ export class LoginComponent implements OnInit {
           result => {
               let data = result.data;
               if(result.status) {
+                  toastr.success('¡Exito!', 'Bienvenido ' + data.user.name + ' ' + data.user.first_surname);
                   lscache.set('user', data.user, data.ttl);
                   lscache.set('authToken', data.token, data.ttl);
                   this._router.navigate(['/']);
               }
+              else
+                toastr.error('¡Error!', result.msg);
           },
           error => {
-              return false;
+              toastr.error('¡Error!', 'Hubo un error en el servidor');
+              console.log(error);
           });
   }
 }

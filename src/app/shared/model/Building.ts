@@ -1,14 +1,14 @@
 import { Land, Warehouse, Office, House } from './';
 
 export class Building {
-    public id: Number;
-    public land_id: Number;
+    public id: number;
+    public land_id: number;
     public land: Land;
-    public warehouse_id: Number;
+    public warehouse_id: number;
     public warehouse: Warehouse;
-    public office_id: Number;
+    public office_id: number;
     public office: Office
-    public house_id: Number;
+    public house_id: number;
     public house: House;
     public images: Array<any>;
     public extra_data: string;

@@ -13,7 +13,9 @@ declare var bootbox: any;
 export class BranchesComponent implements OnInit {
     public branches: Branch[];
 
-    public dtOptions: DataTables.Settings = {};
+    public dtOptions: DataTables.Settings = {
+		language: { url: 'assets/DatatablesSpanish.json' }
+    };
     public dtTrigger: Subject<any> = new Subject<any>();
 
     constructor(

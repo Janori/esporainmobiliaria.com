@@ -85,18 +85,18 @@
                             <img alt="" class="img-circle" src="{{ this.url + 'public/' + user.img_path }}" /> </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="profile.html">
+                                <a [routerLink]="['/', 'perfil']">
                                     <i class="icon-user"></i> Mi perfil </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="ventas.html">
                                     <i class="icon-bar-chart"></i> Mis Ventas
                                     <span class="badge badge-danger"> 30 </span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="divider"> </li>
                             <li>
-                                <a href="lock.html">
+                                <a (click)="doLockscreen()">
                                     <i class="icon-lock"></i> Bloquear Pantalla </a>
                             </li>
                             <li>

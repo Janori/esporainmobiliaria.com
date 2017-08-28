@@ -34,4 +34,9 @@ export class DashboardComponent implements OnInit {
         this._authService.logout();
     }
 
+    doLockscreen = () => {
+        lscache.set('lock', true);
+        this._authService.lockscreen();
+    }
+
 }

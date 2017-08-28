@@ -12,7 +12,9 @@ import { Subject } from 'rxjs/Rx';
 export class AgentsComponent implements OnInit {
     public agents: Agent[];
 
-    public dtOptions: DataTables.Settings = {};
+    public dtOptions: DataTables.Settings = {
+		language: { url: 'assets/DatatablesSpanish.json' }
+    };
     public dtTrigger: Subject<any> = new Subject<any>();
 
     constructor(

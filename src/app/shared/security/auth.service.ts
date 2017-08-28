@@ -24,6 +24,10 @@ export class AuthService extends Service {
         return !!lscache.get('user');
     }
 
+	isLocked = (): boolean => {
+		return !!lscache.get('lock');
+	}
+
 	login = (user: User) => {
 		let params = JSON.stringify(user);
 		let headers = this.headers();
@@ -35,5 +39,17 @@ export class AuthService extends Service {
 	logout = () => {
         lscache.flush();
 		this._router.navigate(['login']);
+	}
+
+	lockscreen = () => {
+		this._router.navigate(['lockscreen']);
+	}
+
+	unlock = (password: string) => {
+		let params = JSON.stringify({password: password});
+		let headers = this.headers();
+
+		return this._http.post(this.url + 'lockscreen', params, {headers})
+						 .map(res => res.json());
 	}
 }

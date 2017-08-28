@@ -59,4 +59,15 @@ export class BuildingService extends Service {
         return this._http.post(this.url + 'buildings/filter', params, { headers })
                          .map(res => res.json());
     }
+
+    sendBuilding = (id: number, email: string) => {
+        let params  = JSON.stringify({
+            building_id: id,
+            email: email
+        });
+
+        let headers = this.headers();
+        return this._http.post(this.url + 'building/send', params, { headers })
+                         .map(res => res.json());
+    }
 }

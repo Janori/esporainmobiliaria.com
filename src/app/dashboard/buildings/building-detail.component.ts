@@ -5,6 +5,7 @@ import { Building } from '../../shared/model';
 import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 import {} from '@types/bootbox';
+import {} from '@types/toastr';
 
 @Component({
   selector: 'app-building-detail',
@@ -29,6 +30,9 @@ export class BuildingDetailComponent implements OnInit {
     public slides: any[] = [];
     public activeSlideIndex: number;
     public noWrapSlides:boolean = false;
+
+    public map: any;
+    public places: any = [];
 
 
     constructor(
@@ -70,6 +74,20 @@ export class BuildingDetailComponent implements OnInit {
         this.latitude = 39.8282;
         this.longitude = -98.5795;
         this.getBuilding();
+        // this.mapsAPILoader.load().then(() => {
+        //     var service = new google.maps.places.PlacesService(null);
+        //     service.nearbySearch({
+        //         location : new google.maps.LatLng(this.latitude, this.longitude),
+        //         radius : 5500,
+        //         types : [ 'restaurant' ]
+        //     }, (results, status) => {
+        //         console.log(results, status);
+        //     });
+        // });
+    }
+
+    mapReady = (map) => {
+        this.map = map;
     }
 
     getBuilding = () => {
@@ -86,6 +104,21 @@ export class BuildingDetailComponent implements OnInit {
                     this.longitude = parseFloat(this.building.land.location.longitude);
                     this.title = 'Inmueble #' + this.building.id;
 
+                    var service = new google.maps.places.PlacesService(this.map);
+                   service.nearbySearch({
+                       location : new google.maps.LatLng(this.latitude, this.longitude),
+                       radius : 5500,
+                       types : [ 'restaurant', 'school', 'movie_theater', 'bank', 'university', 'store', 'shopping_mall', 'gas_station']
+                   }, (results, status) => {
+                       if (status == google.maps.places.PlacesServiceStatus.OK) {
+                            for (var i = 0; i < results.length; i++) {
+                                var place = results[i];
+
+                                if(this.places.length < 5)
+                                    this.places.push({name: place.name});
+                            }
+                        }
+                   });
 
                     this.building.images.forEach((image) => {
                         this.slides.push({
@@ -119,5 +152,38 @@ export class BuildingDetailComponent implements OnInit {
             default:
                 return value;
         }
+    }
+
+    sendBuilding = () => {
+        var self = this;
+        bootbox.prompt({
+            size: 'small',
+            title: "Ingresa un correo electrónico",
+            inputType: 'email',
+            buttons: {
+                confirm: {
+                label: 'Aceptar',
+                className: 'btn-primary'
+                },
+                    cancel: {
+                    label: 'Cancelar',
+                    className: 'btn-default'
+                }
+            },
+            callback: function(result){
+                self._buildingService.sendBuilding(self.building.id, result).subscribe(
+                    result => {
+                        if(result.status)
+                            toastr.success(result.msg, '¡Hecho!');
+                        else
+                            toastr.error(result.msg, '¡Error!');
+                    },
+                    error => {
+                        console.log(error);
+                        alert('Hay un error en la petición');
+                    }
+                )
+            }
+        });
     }
 }

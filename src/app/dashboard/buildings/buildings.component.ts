@@ -18,6 +18,11 @@ export class BuildingsComponent implements OnInit {
     public kind: string;
     public filter: any = {};
 
+    public dtOptions: DataTables.Settings = {
+        language: { url: 'assets/DatatablesSpanish.json' }
+    };
+    public dtTrigger: Subject<any> = new Subject<any>();
+
     @ViewChild('type') type: ElementRef;
     @ViewChild('disponibility') disponibility: ElementRef;
     @ViewChild('priceFilter') price: any;
@@ -41,6 +46,8 @@ export class BuildingsComponent implements OnInit {
                 this.buildings.forEach((building, i, buildings) => {
                     buildings[i] = new Building(building);
                 });
+
+                this.dtTrigger.next();
             },
             error => {
                 console.log(error);
