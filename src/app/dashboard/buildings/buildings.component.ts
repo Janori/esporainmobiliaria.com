@@ -99,9 +99,9 @@ export class BuildingsComponent implements OnInit {
         this.filter.disponibility = this.disponibility.nativeElement.value;
         this.filter.price = {from: this.price.from, to: this.price.to}
         this.filter.surface = {from: this.surface.from, to: this.surface.to}
-        if(this.filter.type == 'Oficina' || this.filter.type == 'Casa')
+        // if(this.filter.type == 'Oficina' || this.filter.type == 'Casa')
             this.filter.baths = {from: this.baths.from, to: this.baths.to}
-        if(this.filter.type == 'Casa')
+        // if(this.filter.type == 'Casa')
             this.filter.rooms = {from: this.rooms.from, to: this.rooms.to}
 
         this._buildingService.getFilterBuildings(this.filter).subscribe(

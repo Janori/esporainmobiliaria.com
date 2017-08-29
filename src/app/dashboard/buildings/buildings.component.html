@@ -17,10 +17,17 @@
                                         <label class="col-md-3 control-label">Tipo de inmueble</label>
                                         <div class="col-md-9">
                                             <select class="form-control" (change)="setType($event)" #type>
-                                                <option value="Terreno">Terreno</option>
-                                                <option value="Almacen">Almacén</option>
-                                                <option value="Oficina">Oficina</option>
-                                                <option value="Casa">Casa</option>
+                                                <option value="Casas">Casas</option>
+                                                <option value="Departamentos">Departamentos</option>
+                                                <option value="Oficinas">Oficinas</option>
+                                                <option value="Terrenos">Terrenos</option>
+                                                <option value="Edificios">Edificios</option>
+                                                <option value="Parques industriales">Parques industriales</option>
+                                                <option value="Plantas industriales">Plantas industriales</option>
+                                                <option value="Hoteles">Hoteles</option>
+                                                <option value="Ranchos">Ranchos</option>
+                                                <option value="Haciendas y quintas/Granjas">Haciendas y quintas/Granjas</option>
+                                                <option value="Predio rustico">Predio rustico</option>
                                             </select>
                                         </div>
                                     </div>
@@ -146,7 +153,7 @@
                               </thead>
                               <tbody>
                                   <tr class="odd gradeX" *ngFor="let building of buildings">
-                                      <td>{{ building.kind }}</td>
+                                      <td>{{ building.type }}</td>
                                       <td>{{ building.disposition }}</td>
                                       <td>{{ building.land.surface }} m<sup>2</sup></td>
                                       <td>$ {{ building.price }} M.N.</td>

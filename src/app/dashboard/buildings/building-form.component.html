@@ -25,18 +25,25 @@
                             <div class="tab-content">
                                 <!-- Informacion personal TAB -->
                                 <div class="tab-pane active" id="tab_1_1">
-                                    <div class="form-group">
-                                    <label class="col-md-3 control-label">Tipo de inmueble</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" (change)="setType($event)">
-                                            <option value="Terreno">Terreno</option>
-                                            <option value="Almacen">Almacén</option>
-                                            <option value="Oficina">Oficina</option>
-                                            <option value="Casa">Casa</option>
-                                        </select>
-                                    </div>
-                                    </div>
                                     <form role="form" #buildingForm="ngForm" (ngSubmit)="onSubmit()" (keydown)="keyDownFunction($event)" class="form-horizontal form-groups-bordered">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Tipo de inmueble</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control"  [(ngModel)]="building.type" name="type" required>
+                                                    <option value="Casas">Casas</option>
+                                                    <option value="Departamentos">Departamentos</option>
+                                                    <option value="Oficinas">Oficinas</option>
+                                                    <option value="Terrenos">Terrenos</option>
+                                                    <option value="Edificios">Edificios</option>
+                                                    <option value="Parques industriales">Parques industriales</option>
+                                                    <option value="Plantas industriales">Plantas industriales</option>
+                                                    <option value="Hoteles">Hoteles</option>
+                                                    <option value="Ranchos">Ranchos</option>
+                                                    <option value="Haciendas y quintas/Granjas">Haciendas y quintas/Granjas</option>
+                                                    <option value="Predio rustico">Predio rustico</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                       <div class="form-group">
                                             <label class="col-md-3 control-label">Disposición</label>
                                             <div class="col-md-9">
@@ -62,7 +69,7 @@
                                       <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
                                           <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
                                       </agm-map>
-                                        <div *ngIf="building.warehouse_id != null"> <!--   Warehouse container -->
+                                        <div> <!--   Warehouse container -->
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">¿Es nueva?</label>
                                                 <div class="col-md-5">
@@ -82,7 +89,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div *ngIf="building.office_id != null"> <!--   Warehouse container -->
+                                        <div> <!--   Warehouse container -->
                                             <div class="form-group">
                                                 <label class="control-label">Baños</label>
                                                 <input [(ngModel)]="building.office.baths" type="number"  min="0" step="1" class="form-control" name="baths" required/>
@@ -91,7 +98,7 @@
                                                 <label class="control-label">Estacionamientos</label>
                                                 <input [(ngModel)]="building.office.parkings" type="number"  min="0" step="1" class="form-control" name="parkings" required/>
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                   <label class="col-md-3 control-label">Tipo</label>
                                                   <div class="col-md-9">
                                                       <select class="form-control" [(ngModel)]="building.office.kind" name="office_kind" required>
@@ -99,27 +106,17 @@
                                                           <option value="o">Oficina</option>
                                                       </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
-                                        <div *ngIf="building.house_id != null"> <!--   Warehouse container -->
+                                        <div> <!--   Warehouse container -->
                                             <div class="form-group">
                                                 <label class="control-label">Habitaciones</label>
                                                 <input [(ngModel)]="building.house.rooms" type="number"  min="0" step="1" class="form-control" name="rooms" required/>
                                             </div>
-                                            <div class="form-group">
-                                                  <label class="col-md-3 control-label">Tipo de casa</label>
-                                                  <div class="col-md-9">
-                                                      <select class="form-control" [(ngModel)]="building.house.kind" name="house_kind" required>
-                                                          <option value="c">Casa</option>
-                                                          <option value="d">Departamento</option>
-                                                          <option value="e">Edificio</option>
-                                                          <option value="h">Hacienda</option>
-                                                          <option value="g">Granja</option>
-                                                          <option value="r">Rancho</option>
-                                                          <option value="t">Hotel</option>
-                                                      </select>
-                                                </div>
-                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="extra_data" rows="8" cols="80" [(ngModel)]="building.extra_data"></textarea>
+
                                         </div>
                                         <div class="margiv-top-10" style="margin-top: 10px;">
                                             <button type="submit" class="btn green"> Guardar Cambios </button>
@@ -134,7 +131,6 @@
                                         [headers]="[
                                         {header: 'Authorization', value: token}
                                         ]"
-                                        [max]="1"
                                         [buttonCaption]="'Selecciona una imagen'"
                                         [dropBoxMessage]="'¡Suelta aquí tus imágenes!'"
                                         [url]="url + 'building/upload/' + building.id"
@@ -143,7 +139,7 @@
                                     </image-upload>
                                     <div class="gallery-container">
                                         <div class="col-lg-3 col-md-4 col-xs-12 col-sm-12" *ngFor="let image of building.images">
-                                            <img src="{{ url + 'public/images/bld/' + image.path}}" class="img-thumbnail" width="304" height="236">
+                                            <img src="{{ url + 'public/images/bld/thumb_' + image.path}}" class="img-thumbnail" width="304" height="236">
                                             <button class="btn btn-danger thumbnail-button" type="button" (click)="removeImage(image.id)">Remover imagen</button>
                                         </div>
                                     </div>

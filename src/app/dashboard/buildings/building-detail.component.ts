@@ -55,7 +55,7 @@ export class BuildingDetailComponent implements OnInit {
         this.keysEnum.warehouse = {
             is_new: 'Es nuevo',
             build_surface: 'Superifice de construcción en m<sup>2</sup>',
-            building_date: 'Fecha de construcción'
+            building_date: 'Edad de la construcción'
         }
 
         this.keysEnum.office = {
@@ -148,7 +148,8 @@ export class BuildingDetailComponent implements OnInit {
             case 'build_surface':
                 return value + ' m<sup>2</sup>';
             case 'building_date':
-                return new Date(value).toLocaleDateString('es-Es', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                return Math.abs(new Date(Date.now() - new Date(value).getTime()).getUTCFullYear() - 1970) + ' años';
+                // return new Date(value).toLocaleDateString('es-Es', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             default:
                 return value;
         }

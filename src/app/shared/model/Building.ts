@@ -15,20 +15,23 @@ export class Building {
     public created_at: string;
 	public updated_at: string;
 
+    public type: string;
+
     constructor(obj?: any) {
         this.id = obj && obj.id || null;
         this.land_id = obj && obj.land_id || null;
         this.land = obj && new Land(obj.land) || new Land();
         this.warehouse_id = obj && obj.warehouse_id || null;
-        this.warehouse = obj && new Warehouse(obj.warehouse) || null;
+        this.warehouse = obj && new Warehouse(obj.warehouse) || new Warehouse();
         this.office_id = obj && obj.office_id || null;
-        this.office = obj && new Office(obj.office) || null;
+        this.office = obj && new Office(obj.office) || new Office();
         this.house_id = obj && obj.house_id || null;
-        this.house = obj && new House(obj.house) || null;
+        this.house = obj && new House(obj.house) || new House();
         this.images = obj && obj.images || [];
         this.extra_data = obj && obj.extra_data || null;
         this.created_at = obj && obj.created_at || null;
     	this.updated_at = obj && obj.updated_at || null;
+        this.type = obj && obj.type || null;
     }
 
     get kind() {
