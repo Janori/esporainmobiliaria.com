@@ -35,7 +35,7 @@ export class BuildingEditComponent implements OnInit {
     public searchElementRef: ElementRef;
 
 
-    private myDatePickerOptions: IMyDpOptions = {
+    public myDatePickerOptions: IMyDpOptions = {
        // other options...
        dateFormat: 'yyyy-mm-dd',
        todayBtnTxt: 'Today',
@@ -48,7 +48,7 @@ export class BuildingEditComponent implements OnInit {
        maxYear: new Date().getFullYear(),
     };
 
-   private model: Object = {};
+   public model: Object = {};
 
     constructor(
         private _buildingService: BuildingService,

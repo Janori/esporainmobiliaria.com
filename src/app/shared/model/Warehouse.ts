@@ -1,7 +1,7 @@
 export class Warehouse {
-    public id: Number;
-    public is_new: Number;
-    public build_surface: Number;
+    public id: number;
+    public is_new: boolean;
+    public build_surface: number;
     public building_date: string;
 
     constructor(obj?: any) {

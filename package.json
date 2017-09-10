@@ -42,6 +42,7 @@
     "lscache": "^1.1.0",
     "mydatepicker": "^2.0.26",
     "ng2-charts": "^1.6.0",
+    "ng2-file-upload": "^1.2.1",
     "ng2-ion-range-slider": "^1.0.3",
     "ng2-owl-carousel": "^0.1.15",
     "ng2-select": "^1.2.0",

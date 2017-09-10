@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { PasswordValidation } from './password-validation';
 import { AgentService, BranchService } from '../../shared/services';
 import { User as Agent, Branch } from '../../shared/model';
 
 declare var bootbox: any;
+declare var lscache: any;
 
 @Component({
     selector: 'app-agent-edit',
@@ -21,6 +23,9 @@ export class AgentEditComponent implements OnInit {
 
     public url: string;
     public passwordForm: FormGroup;
+
+    public uploader: FileUploader;
+    public token:string;
 
     constructor(
         private _agentService: AgentService,
@@ -55,7 +60,8 @@ export class AgentEditComponent implements OnInit {
                     	this._router.navigate(['/']);
 
                     this.agent = new Agent(result.data);
-                    console.log(this.agent);
+                    this.uploader = new FileUploader({url: this.url + 'user/' + this.agent.id + '/files/curriculum', authToken: lscache.get('authToken')});
+
 				},
 				error => {
 					console.log(error);
@@ -97,6 +103,5 @@ export class AgentEditComponent implements OnInit {
 			);
 		});
     }
-
 
 }

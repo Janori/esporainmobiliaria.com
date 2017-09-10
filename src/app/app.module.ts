@@ -18,6 +18,7 @@ import { LightboxModule } from 'angular2-lightbox';
 import { CarouselModule } from 'ngx-bootstrap';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -85,6 +86,7 @@ import { GeolocationComponent } from './dashboard/geolocation/geolocation.compon
     NguiAutoCompleteModule,
     LightboxModule,
     IonRangeSliderModule,
+    FileUploadModule,
     routing
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard],

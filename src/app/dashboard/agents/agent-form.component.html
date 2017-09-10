@@ -117,6 +117,22 @@
                                         <div class="form-group">
                                           <label class="control-label">País</label>
                                           <input [(ngModel)]="agent.pais" type="text" class="form-control" name="pais" required /> </div>
+                                          <div *ngIf="agent.created_at != null">
+                                              <div class="form-group">
+                                                  <label for="exampleInputFile" class="col-md-3 control-label">Curriculúm</label>
+                                                  <div class="col-md-9">
+                                                    <input type="file" ng2FileSelect [uploader]="uploader" (change)="uploader.queue[0].upload()"/>
+                                                      <p class="help-block"> Formato PDF  </p>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label for="exampleInputFile" class="col-md-3 control-label">Identificacion Oficial</label>
+                                                  <div class="col-md-9">
+                                                    <input type="file" ng2FileSelect [uploader]="uploader" (change)="uploader.queue[0].upload()"/>
+                                                      <p class="help-block"> Formato PDF o imagen admitidos </p>
+                                                  </div>
+                                              </div>
+                                          </div>
                                           <div class="form-group">
                                               <label class="col-md-4 control-label">ID de la sucursal</label>
                                               <div class="col-md-8">
