@@ -13,7 +13,8 @@ export class AgentsComponent implements OnInit {
     public agents: Agent[];
 
     public dtOptions: DataTables.Settings = {
-		language: { url: 'assets/DatatablesSpanish.json' }
+        language: { url: 'assets/DatatablesSpanish.json' },
+        destroy: true
     };
     public dtTrigger: Subject<any> = new Subject<any>();
 

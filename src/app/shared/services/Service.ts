@@ -4,10 +4,11 @@ declare var lscache: any;
 
 export class Service {
     public url: string;
+    public test: boolean = false;
 
     constructor() {
-        if(!/localhost/.test(document.location.host))
-            this.url = 'http://api.esporainmobiliaria.com/'; // prod
+        if(!this.test || !/localhost/.test(document.location.host))
+            this.url = 'http://esporainmobiliaria.com/api/'; // prod
         else
             this.url = 'http://api.esporainmobiliaria.local/'; // test
     }
@@ -18,7 +19,6 @@ export class Service {
 
         if(lscache.get('authToken') !== null)
             headers.append("Authorization", lscache.get('authToken'));
-
         return headers;
 
     }

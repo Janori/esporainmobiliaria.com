@@ -14,7 +14,8 @@ export class BranchesComponent implements OnInit {
     public branches: Branch[];
 
     public dtOptions: DataTables.Settings = {
-		language: { url: 'assets/DatatablesSpanish.json' }
+        language: { url: 'assets/DatatablesSpanish.json' },
+        destroy: true
     };
     public dtTrigger: Subject<any> = new Subject<any>();
 

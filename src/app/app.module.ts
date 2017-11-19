@@ -41,6 +41,8 @@ import { GoalCardsComponent } from './dashboard/home/items/goal-cards/goal-cards
 import { HomeGraphicComponent } from './dashboard/home/items/home-graphic/home-graphic.component';
 import { LockscreenComponent } from './dashboard/lockscreen/lockscreen.component';
 import { GeolocationComponent } from './dashboard/geolocation/geolocation.component';
+import { CustomersComponent } from './dashboard/customers/customers.component';
+import { CustomerFormComponent } from './dashboard/customers/customer-form.component';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import { GeolocationComponent } from './dashboard/geolocation/geolocation.compon
     EnumWsPipe,
     KeysPipe,
     LockscreenComponent,
-    GeolocationComponent
+    GeolocationComponent,
+    CustomersComponent,
+    CustomerFormComponent
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,8 @@ import { UserEditComponent } from './dashboard/users/user-edit.component';
 import { UserCreateComponent } from './dashboard/users/user-create.component';
 import { LockscreenComponent } from './dashboard/lockscreen/lockscreen.component';
 import { GeolocationComponent } from './dashboard/geolocation/geolocation.component';
+import { CustomersComponent } from './dashboard/customers/customers.component';
+import { CustomerFormComponent } from './dashboard/customers/customer-form.component';
 
 const appRoutes : Routes = [
     { path: 'login', component: LoginComponent },
@@ -59,6 +61,22 @@ const appRoutes : Routes = [
                     { path: '', component: UsersComponent },
                     { path: 'crear', component: UserCreateComponent },
                     { path: ':id/editar', component: UserEditComponent }
+                ],
+            },
+            {
+                path: 'prospectos',
+                children: [
+                    { path: '', component: CustomersComponent },
+                    { path: 'crear', component: CustomerFormComponent },
+                    { path: ':id/editar', component: CustomerFormComponent }
+                ],
+            },
+            {
+                path: 'propietarios',
+                children: [
+                    { path: '', component: CustomersComponent },
+                    { path: 'crear', component: CustomerFormComponent },
+                    { path: ':id/editar', component: CustomerFormComponent }
                 ],
             },
             { path: 'geolocalizacion', component: GeolocationComponent },

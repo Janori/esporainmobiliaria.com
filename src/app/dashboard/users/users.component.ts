@@ -16,7 +16,8 @@ export class UsersComponent implements OnInit {
     public users: User[];
 
     public dtOptions: DataTables.Settings = {
-        language: { url: 'assets/DatatablesSpanish.json' }
+        language: { url: 'assets/DatatablesSpanish.json' },
+        destroy: true
     };
     public dtTrigger: Subject<any> = new Subject<any>();
 

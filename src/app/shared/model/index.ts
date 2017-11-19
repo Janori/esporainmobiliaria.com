@@ -6,3 +6,5 @@ export * from './Location';
 export * from './Office';
 export * from './User';
 export * from './Warehouse';
+export * from './Sale';
+export * from './Customer';

@@ -15,6 +15,11 @@ import {} from '@types/toastr';
     agm-map {
         height: 300px;
     }
+
+    .scrollable {
+        overflow-y: scroll;
+        max-height: 245px;
+    }
  `]
 })
 export class BuildingDetailComponent implements OnInit {
@@ -114,7 +119,7 @@ export class BuildingDetailComponent implements OnInit {
                             for (var i = 0; i < results.length; i++) {
                                 var place = results[i];
 
-                                if(this.places.length < 5)
+                                if(this.places.length < 15)
                                     this.places.push({name: place.name});
                             }
                         }
