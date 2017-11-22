@@ -19,6 +19,7 @@ import { CarouselModule } from 'ngx-bootstrap';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { FileUploadModule } from 'ng2-file-upload';
+import { SelectModule } from 'ng2-select';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -91,6 +92,7 @@ import { CustomerFormComponent } from './dashboard/customers/customer-form.compo
     LightboxModule,
     IonRangeSliderModule,
     FileUploadModule,
+    SelectModule,
     routing
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard],

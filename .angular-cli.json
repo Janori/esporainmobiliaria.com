@@ -28,7 +28,7 @@
         "../node_modules/ion-rangeslider/css/ion.rangeSlider.css",
         "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css",
         "../node_modules/toastr/build/toastr.min.css",
-        "./styles.css"
+        "./styles.scss"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",

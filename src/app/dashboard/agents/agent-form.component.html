@@ -49,35 +49,37 @@
                             <div class="tab-content">
                                 <!-- Informacion personal TAB -->
                                 <div class="tab-pane active" id="tab_1_1">
-                                    <form #personalInformationForm="ngForm" role="form" (ngSubmit)="onSubmit()">
+                                    <form #personalInformationForm="ngForm" role="form" class="form-horizontal" (ngSubmit)="onSubmit()">
                                         <div class="form-group">
-                                            <label class="control-label">Nombre(s)</label>
-                                            <input [(ngModel)]="agent.name" type="text" class="form-control" name="name" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                            <label class="col-md-3 control-label">Nombres</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.name" type="text" class="form-control" name="name" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">Apellido Paterno</label>
-                                            <input [(ngModel)]="agent.first_surname" type="text" class="form-control" name="first_surname" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                            <label class="col-md-3 control-label">Apellido Paterno</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.first_surname" type="text" class="form-control" name="first_surname" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">Apellido Materno</label>
-                                            <input [(ngModel)]="agent.last_surname" type="text" class="form-control" name="last_surname" pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                            <label class="col-md-3 control-label">Apellido Materno</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.last_surname" type="text" class="form-control" name="last_surname" pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                            </div>
                                         </div>
                                         <hr>
                                         <div class="form-group">
-                                            <label class="control-label">Nombre de usuario</label>
-                                            <input [(ngModel)]="agent.username" type="text" class="form-control" name="username" required [readonly]="agent.created_at != null"/>
+                                            <label class="col-md-3 control-label">Nombre de usuario</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.username" type="text" class="form-control" name="username" required [readonly]="agent.created_at != null"/>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Email</label>
                                             <input [(ngModel)]="agent.email" type="email" class="form-control" name="email" required/>
                                         </div>
                                         <hr>
-                                        <!-- <div class="form-group">
-                                            <label class="control-label">Teléfono Móvil</label>
-                                            <input type="text" placeholder="+1 646 580 PRUEBA (6284)" class="form-control" /> </div>
-                                        <div class="form-group">
-                                                <label class="control-label">Teléfono Fijo</label>
-                                                <input type="text" placeholder="+1 646 580 PRUEBA (6284)" class="form-control" /> </div> -->
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">Sexo</label>
                                             <div class="col-md-9">

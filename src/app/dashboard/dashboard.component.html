@@ -2,7 +2,10 @@
     <div class="page-header-inner ">
         <div class="page-logo">
             <a routerLink="/">
-                <img src="../assets/layout/img/logo-light.png" alt="logo" class="logo-default" /> </a>
+                <div class="logo-holder">
+                    <img src="../assets/logo.png" alt="logo" class="logo-default" />
+                </div>
+            </a>
             <div class="menu-toggler sidebar-toggler">
             </div>
         </div>
@@ -84,17 +87,6 @@
                             <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                             <img alt="" class="img-circle" src="{{ this.url + 'public/' + user.img_path }}" /> </a>
                         <ul class="dropdown-menu dropdown-menu-default">
-                            <li>
-                                <a [routerLink]="['/', 'perfil']">
-                                    <i class="icon-user"></i> Mi perfil </a>
-                            </li>
-                            <!-- <li>
-                                <a href="ventas.html">
-                                    <i class="icon-bar-chart"></i> Mis Ventas
-                                    <span class="badge badge-danger"> 30 </span>
-                                </a>
-                            </li> -->
-                            <li class="divider"> </li>
                             <li>
                                 <a (click)="doLockscreen()">
                                     <i class="icon-lock"></i> Bloquear Pantalla </a>

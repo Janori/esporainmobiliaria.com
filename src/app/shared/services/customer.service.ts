@@ -11,7 +11,14 @@ export class CustomerService extends Service {
     getAllCustomers = (kindCustomer: string) => {
         let headers = this.headers();
 
-        return this._http.get(this.url + 'customer/' + kindCustomer, { headers })
+        return this._http.get(this.url + 'customer/' + kindCustomer + '/kind', { headers })
+                         .map(res => res.json());
+    }
+
+    getCustomer = (id: number) => {
+        let headers = this.headers();
+
+        return this._http.get(this.url + 'customer/' + id, { headers })
                          .map(res => res.json());
     }
 

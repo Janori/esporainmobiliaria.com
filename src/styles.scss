@@ -64,12 +64,38 @@
     }
 }
 
-.form-group {
-    overflow: auto;
-}
-
 tr.no-rows {
     td {
         text-align: center;
+    }
+}
+
+.to-right {
+    text-align: right;
+}
+
+.logo-holder {
+    max-width: 65px;
+    margin-top: 5px;
+    background: #eee;
+    margin-left: 100%;
+    width: 100%;
+
+    img.logo-default {
+        width: 100%;
+        margin: 0 !important;
+    }
+}
+
+body.login {
+    .logo {
+        img {
+            max-width: 140px;
+        }
+    }
+    .login-form {
+        .form-title {
+            text-align: center;
+        }
     }
 }

@@ -14,8 +14,9 @@ declare var lscache: any;
     providers: [ CustomerService ]
 })
 export class CustomersComponent implements OnInit {
-    public prospects: Customer[] = [];
+    public customers: Customer[] = [];
     public kindClient: string;
+    public title: string;
 
     public dtOptions: DataTables.Settings = {
         language: { url: 'assets/DatatablesSpanish.json' },
@@ -27,10 +28,14 @@ export class CustomersComponent implements OnInit {
         private _customerService: CustomerService,
         private _router: Router
     ) {
-        if(this._router.url.includes('prospectos'))
+        if(this._router.url.includes('prospectos')) {
+            this.title = 'Prospectos';
             this.kindClient = 'prospects';
-        else
+        }
+        else {
+            this.title = 'Propietarios';
             this.kindClient = 'owners';
+        }
     }
 
     ngOnInit() {
@@ -38,13 +43,15 @@ export class CustomersComponent implements OnInit {
     }
 
     getAllProspects = () => {
-        // this._customerService.getAllProspects(this.kindClient).subscribe(
-        //     result => {
-        //         console.log(result);
-        //     }, error => {
-        //
-        //     }
-        // )
+        this._customerService.getAllCustomers(this.kindClient).subscribe(
+            result => {
+                result.data.forEach(customer => {
+                    this.customers.push(new Customer(customer));
+                });
+            }, error => {
+                alert('Hubo un error en el servidor');
+            }
+        )
     }
 
     deleteProspect = (id: Number) => {
