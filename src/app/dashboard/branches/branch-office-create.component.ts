@@ -27,6 +27,7 @@ export class BranchOfficeCreateComponent implements OnInit {
     public longitude: number;
     public searchControl: FormControl;
     public zoom: number;
+    public items: any = { users: [], selected: { user: [] }};
 
     @ViewChild("search")
     public searchElementRef: ElementRef;
@@ -94,12 +95,8 @@ export class BranchOfficeCreateComponent implements OnInit {
     getSupervisors = () => {
         this._userService.getAllByKind(User.KIND_SUPERVISOR).subscribe(
             result => {
-                this.users = result.data;
-
-                this.users.forEach((user, i, users) => {
-                    users[i] = new User(user);
-                });
-
+                let agents = result.data;
+                agents.forEach(agent => this.items['users'].push({id: agent.id, text: new User(agent).full_name}));
             },
             error => {
                 console.log(error);
@@ -122,6 +119,14 @@ export class BranchOfficeCreateComponent implements OnInit {
 			    alert('Hay un error en la petición');
 			}
 		);
+    }
+
+    setUser = (value: any) => {
+        this.branch.user_id = value.id;
+    }
+
+    removeUser = (value:any) => {
+        this.branch.user_id = null;
     }
 
 }

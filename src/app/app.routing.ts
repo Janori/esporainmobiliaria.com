@@ -51,8 +51,9 @@ const appRoutes : Routes = [
                 children: [
                     { path: '', component: BuildingsComponent },
                     { path: 'crear', component: BuildingCreateComponent },
-                    { path: ':id', component: BuildingDetailComponent},
-                    { path: ':id/editar', component: BuildingEditComponent }
+                    { path: ':id', component: BuildingDetailComponent },
+                    { path: ':id/editar', component: BuildingEditComponent },
+                    { path: ':id/vender', component: BuildingDetailComponent }
                 ],
             },
             {

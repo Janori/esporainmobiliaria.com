@@ -27,6 +27,8 @@ export class AgentEditComponent implements OnInit {
     public uploader: FileUploader;
     public token:string;
 
+    public items: any = { branches: [], selected: { branch: [] }};
+
     constructor(
         private _agentService: AgentService,
         private _branchService: BranchService,
@@ -60,6 +62,10 @@ export class AgentEditComponent implements OnInit {
                     	this._router.navigate(['/']);
 
                     this.agent = new Agent(result.data);
+
+                    if(this.agent.branch_id != null)
+                        this.items.selected['branch'].push({ id: this.agent.branch.id, text: this.agent.branch.name });
+
                     this.uploader = new FileUploader({url: this.url + 'user/' + this.agent.id + '/files/curriculum', authToken: lscache.get('authToken')});
 
 				},
@@ -74,11 +80,8 @@ export class AgentEditComponent implements OnInit {
     getAllBranches = () => {
         this._branchService.getAllBranches().subscribe(
             result => {
-                this.branches = result.data;
-
-                for(var i = 0; i < this.branches.length; i++)
-                   this.branches[i] = new Branch(this.branches[i]);
-
+                let branchs = result.data;
+                branchs.forEach(branch => this.items['branches'].push({id: branch.id, text: branch.name}));
             },
             error => {
                 console.log(error);
@@ -103,5 +106,14 @@ export class AgentEditComponent implements OnInit {
 			);
 		});
     }
+
+    setBranch = (value: any) => {
+        this.agent.branch_id = value.id;
+    }
+
+    removeBranch = (value:any) => {
+        this.agent.branch_id = null;
+    }
+
 
 }

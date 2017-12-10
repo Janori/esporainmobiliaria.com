@@ -76,8 +76,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">Email</label>
-                                            <input [(ngModel)]="agent.email" type="email" class="form-control" name="email" required/>
+                                            <label class="col-md-3 control-label">Email</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.email" type="email" class="form-control" name="email" required/>
+                                            </div>
                                         </div>
                                         <hr>
                                         <div class="form-group">
@@ -101,24 +103,41 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">Domicilio</label>
-                                            <input [(ngModel)]="agent.address" type="text" class="form-control" name="address" required pattern="[0-9a-zA-Z ñÑáéíóúÁÉÍÓÚ.#\s]*"/>
+                                            <label class="col-md-3 control-label">Domicilio</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.address" type="text" class="form-control" name="address" required pattern="[0-9a-zA-Z ñÑáéíóúÁÉÍÓÚ.#\s]*"/>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                          <label class="control-label">Colonia</label>
-                                          <input [(ngModel)]="agent.colonia" type="text" class="form-control" name="colonia" required /> </div>
+                                            <label class="col-md-3 control-label">Nombre de usuario</label>
+                                            <div class="col-md-9">
+                                              <input [(ngModel)]="agent.colonia" type="text" class="form-control" name="colonia" required />
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Código postal</label>
-                                          <input [(ngModel)]="agent.cp" type="text" class="form-control" name="cp" required /> </div>
+                                            <label class="col-md-3 control-label">Código postal</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.cp" type="text" class="form-control" name="cp" required />
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Municipio</label>
-                                          <input [(ngModel)]="agent.municipio" type="text" class="form-control" name="municipio" required /> </div>
+                                            <label class="col-md-3 control-label">Municipio</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.municipio" type="text" class="form-control" name="municipio" required />
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Estado</label>
-                                          <input [(ngModel)]="agent.estado" type="text" class="form-control" name="estado" required /> </div>
+                                            <label class="col-md-3 control-label">Estado</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.estado" type="text" class="form-control" name="estado" required />
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">País</label>
-                                          <input [(ngModel)]="agent.pais" type="text" class="form-control" name="pais" required /> </div>
+                                            <label class="col-md-3 control-label">País</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="agent.pais" type="text" class="form-control" name="pais" required />
+                                            </div>
+                                        </div>
                                           <div *ngIf="agent.created_at != null">
                                               <div class="form-group">
                                                   <label for="exampleInputFile" class="col-md-3 control-label">Curriculúm</label>
@@ -136,24 +155,21 @@
                                               </div>
                                           </div>
                                           <div class="form-group">
-                                              <label class="col-md-4 control-label">ID de la sucursal</label>
-                                              <div class="col-md-8">
-                                                  <input auto-complete
-                                                         type="text"
-                                                         [(ngModel)]="agent.branch_id"
-                                                         placeholder="Teclea el nombre o el id de la sucursal..."
-                                                         [source]="branches"
-                                                         list-formatter="name"
-                                                         select-value-of="id"
-                                                         display-property-name="id"
-                                                         class="form-control"
-                                                         name="branch"
-                                                         no-match-found-text="No se encontró una sucursal">
+                                              <label class="col-md-3 control-label">Sucursal</label>
+                                              <div class="col-md-9" *ngIf="items.branches.length > 0">
+                                                  <ng-select [allowClear]="true"
+                                                      [items]="items.branches"
+                                                      [active]="items.selected.branch"
+                                                      placeholder="Ninguna sucursal seleccionada"
+                                                      (selected)="setBranch($event)"
+                                                      (removed)="removeBranch($event)"
+                                                      class="{{ agent.branch_id != null ? 'ng-valid' : 'ng-invalid' }}">
+                                                  </ng-select>
                                               </div>
                                           </div>
-                                        <div class="margiv-top-10">
+                                        <div class="margiv-top-10 to-right">
+                                            <a [routerLink]="['/', 'agentes']" class="btn default"> Cancelar </a>
                                             <button type="submit" class="btn green" [disabled]="!personalInformationForm.form.valid"> Guardar Cambios </button>
-                                            <a [routerLink]="['/', 'usuarios']" class="btn default"> Cancelar </a>
                                         </div>
                                     </form>
                                 </div>

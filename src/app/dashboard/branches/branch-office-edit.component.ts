@@ -29,6 +29,7 @@ export class BranchOfficeEditComponent implements OnInit {
     public longitude: number;
     public searchControl: FormControl;
     public zoom: number;
+    public items: any = { users: [], selected: { user: [] }};
 
     @ViewChild("search")
     public searchElementRef: ElementRef;
@@ -46,8 +47,11 @@ export class BranchOfficeEditComponent implements OnInit {
     }
 
     ngOnInit() {
+        var self = this;
         this.getBranch();
-        this.getSupervisors();
+        setTimeout(function() {
+            self.getSupervisors();
+        }, 500);
 
         //set google maps defaults
         this.zoom = 4;
@@ -106,6 +110,8 @@ export class BranchOfficeEditComponent implements OnInit {
                     this.branch = new Branch(result.data);
                     this.latitude = parseFloat(this.branch.location.latitude);
                     this.longitude = parseFloat(this.branch.location.longitude);
+                    if(this.branch.user_id != null)
+                        this.items.selected['user'].push({ id: this.branch.user_id, text: new User(this.branch.user).full_name });
                     console.log(this.branch);
 				},
 				error => {
@@ -119,12 +125,8 @@ export class BranchOfficeEditComponent implements OnInit {
     getSupervisors = () => {
         this._userService.getAllByKind(User.KIND_SUPERVISOR).subscribe(
             result => {
-                this.users = result.data;
-
-                this.users.forEach((user, i, users) => {
-                    users[i] = new User(user);
-                });
-
+                let agents = result.data;
+                agents.forEach(agent => this.items['users'].push({id: agent.id, text: new User(agent).full_name}));
             },
             error => {
                 console.log(error);
@@ -151,6 +153,14 @@ export class BranchOfficeEditComponent implements OnInit {
 				}
 			);
 		});
+    }
+
+    setUser = (value: any) => {
+        this.branch.user_id = value.id;
+    }
+
+    removeUser = (value:any) => {
+        this.branch.user_id = null;
     }
 
 }

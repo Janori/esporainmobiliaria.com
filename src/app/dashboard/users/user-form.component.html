@@ -49,49 +49,39 @@
                             <div class="tab-content">
                                 <!-- Informacion personal TAB -->
                                 <div class="tab-pane active" id="tab_1_1">
-                                    <form #personalInformationForm="ngForm" role="form" (ngSubmit)="onSubmit()">
+                                    <form #personalInformationForm="ngForm" role="form" (ngSubmit)="onSubmit()" class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="control-label">Nombre(s)</label>
-                                            <input [(ngModel)]="user.name" type="text" class="form-control" name="name" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">Apellido Paterno</label>
-                                            <input [(ngModel)]="user.first_surname" type="text" class="form-control" name="first_surname" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">Apellido Materno</label>
-                                            <input [(ngModel)]="user.last_surname" type="text" class="form-control" name="last_surname" pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
-                                        </div>
-                                        <hr>
-                                        <div class="form-group">
-                                            <label class="control-label">Nombre de usuario</label>
-                                            <input [(ngModel)]="user.username" type="text" class="form-control" name="username" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Tipo de usuario</label>
+                                            <label class="col-md-3 control-label">Nombres</label>
                                             <div class="col-md-9">
-                                                <select class="form-control" [(ngModel)]="user.kind" name="kind" required>
-                                                    <option value="a">Administrador</option>
-                                                    <option value="s">Supervisor</option>
-                                                    <option value="u">Agente</option>
-                                                </select>
+                                                <input [(ngModel)]="user.name" type="text" class="form-control" name="name" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">Email</label>
-                                            <input [(ngModel)]="user.email" type="email" class="form-control" name="email" required/>
+                                            <label class="col-md-3 control-label">Apellido Paterno</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="user.first_surname" type="text" class="form-control" name="first_surname" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                            </div>
                                         </div>
-                                        <div class="form-group" *ngIf="user.created_at == null">
-                                            <label class="control-label">Contraseña</label>
-                                            <input [(ngModel)]="user.password" type="password" class="form-control" name="password" required/>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Apellido Materno</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="user.last_surname" type="text" class="form-control" name="last_surname" pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
+                                            </div>
                                         </div>
                                         <hr>
-                                        <!-- <div class="form-group">
-                                            <label class="control-label">Teléfono Móvil</label>
-                                            <input type="text" placeholder="+1 646 580 PRUEBA (6284)" class="form-control" /> </div>
                                         <div class="form-group">
-                                                <label class="control-label">Teléfono Fijo</label>
-                                                <input type="text" placeholder="+1 646 580 PRUEBA (6284)" class="form-control" /> </div> -->
+                                            <label class="col-md-3 control-label">Nombre de usuario</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="user.username" type="text" class="form-control" name="username" required [readonly]="user.created_at != null"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Email</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="user.email" type="email" class="form-control" name="email" required/>
+                                            </div>
+                                        </div>
+                                        <hr>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">Sexo</label>
                                             <div class="col-md-9">
@@ -113,27 +103,44 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">Domicilio</label>
-                                            <input [(ngModel)]="user.address" type="text" class="form-control" name="address" required pattern="[0-9a-zA-Z ñÑáéíóúÁÉÍÓÚ.#\s]*"/>
+                                            <label class="col-md-3 control-label">Domicilio</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="user.address" type="text" class="form-control" name="address" required pattern="[0-9a-zA-Z ñÑáéíóúÁÉÍÓÚ.#\s]*"/>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                          <label class="control-label">Colonia</label>
-                                          <input [(ngModel)]="user.colonia" type="text" class="form-control" name="colonia" required /> </div>
+                                            <label class="col-md-3 control-label">Nombre de usuario</label>
+                                            <div class="col-md-9">
+                                              <input [(ngModel)]="user.colonia" type="text" class="form-control" name="colonia" required />
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Código postal</label>
-                                          <input [(ngModel)]="user.cp" type="text" class="form-control" name="cp" required /> </div>
+                                            <label class="col-md-3 control-label">Código postal</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="user.cp" type="text" class="form-control" name="cp" required />
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Municipio</label>
-                                          <input [(ngModel)]="user.municipio" type="text" class="form-control" name="municipio" required /> </div>
+                                            <label class="col-md-3 control-label">Municipio</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="user.municipio" type="text" class="form-control" name="municipio" required />
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Estado</label>
-                                          <input [(ngModel)]="user.estado" type="text" class="form-control" name="estado" required /> </div>
+                                            <label class="col-md-3 control-label">Estado</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="user.estado" type="text" class="form-control" name="estado" required />
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">País</label>
-                                          <input [(ngModel)]="user.pais" type="text" class="form-control" name="pais" required /> </div>
-                                        <div class="margiv-top-10">
-                                            <button type="submit" class="btn green" [disabled]="!personalInformationForm.form.valid"> Guardar Cambios </button>
+                                            <label class="col-md-3 control-label">País</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="user.pais" type="text" class="form-control" name="pais" required />
+                                            </div>
+                                        </div>
+                                        <div class="margiv-top-10 to-right">
                                             <a [routerLink]="['/', 'usuarios']" class="btn default"> Cancelar </a>
+                                            <button type="submit" class="btn green" [disabled]="!personalInformationForm.form.valid"> Guardar Cambios </button>
                                         </div>
                                     </form>
                                 </div>

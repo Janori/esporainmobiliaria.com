@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { BuildingService } from '../../shared/services';
-import { Building } from '../../shared/model';
+import { BuildingService, CustomerService } from '../../shared/services';
+import { Building, Customer } from '../../shared/model';
 import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 import {} from '@types/bootbox';
@@ -10,7 +10,7 @@ import {} from '@types/toastr';
 @Component({
   selector: 'app-building-detail',
   templateUrl: './building-detail.component.html',
-  providers: [ BuildingService ],
+  providers: [ BuildingService, CustomerService ],
   styles: [`
     agm-map {
         height: 300px;
@@ -39,9 +39,11 @@ export class BuildingDetailComponent implements OnInit {
     public map: any;
     public places: any = [];
 
-
+    public isSelling: boolean;
+    public items: any = { customers: [], users: [], selected: { customer: [], user: [] }};
     constructor(
         private _buildingService: BuildingService,
+        private _customerService: CustomerService,
         private _router: Router,
         private _route: ActivatedRoute,
         private mapsAPILoader: MapsAPILoader
@@ -72,6 +74,8 @@ export class BuildingDetailComponent implements OnInit {
         this.keysEnum.house = {
             rooms: 'Número de cuartos'
         }
+
+        this.isSelling = this._router.url.includes('vender');
     }
 
     ngOnInit() {
@@ -79,6 +83,7 @@ export class BuildingDetailComponent implements OnInit {
         this.latitude = 39.8282;
         this.longitude = -98.5795;
         this.getBuilding();
+        this.getProspects();
         // this.mapsAPILoader.load().then(() => {
         //     var service = new google.maps.places.PlacesService(null);
         //     service.nearbySearch({
@@ -127,7 +132,7 @@ export class BuildingDetailComponent implements OnInit {
 
                     this.building.images.forEach((image) => {
                         this.slides.push({
-                         image: this.url + 'public/images/bld/' + image.path
+                         image: this.url + 'images/bld/' + image.path
                        });
                     });
 				},
@@ -137,6 +142,19 @@ export class BuildingDetailComponent implements OnInit {
 				}
 			);
 		});
+    }
+
+    getProspects = () => {
+        this._customerService.getAllCustomers('prospects').subscribe(
+            result => {
+                let customers = result.data;
+                customers.forEach(customer => this.items['customers'].push({id: customer.id, text: new Customer(customer).full_name}));
+            },
+            error => {
+                console.log(error);
+                alert('Hay un error en la petición');
+            }
+        )
     }
 
     response = (key, value) => {
@@ -191,5 +209,13 @@ export class BuildingDetailComponent implements OnInit {
                 )
             }
         });
+    }
+
+    setCustomer = (value: any) => {
+        this.building.customer_id = value.id;
+    }
+
+    removeCustomer = (value: any) => {
+        this.building.customer_id = null;
     }
 }

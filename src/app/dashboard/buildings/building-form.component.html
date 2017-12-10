@@ -44,7 +44,34 @@
                                                 </select>
                                             </div>
                                         </div>
-                                      <div class="form-group">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Propietario</label>
+                                            <div class="col-md-9" *ngIf="items.customers.length > 0">
+                                                <ng-select [allowClear]="true"
+                                                    [items]="items.customers"
+                                                    [active]="items.selected.customer"
+                                                    placeholder="Ningun propietario seleccionado"
+                                                    (selected)="setCustomer($event)"
+                                                    (removed)="removeCustomer($event)"
+                                                    class="{{ building.customer_id != null ? 'ng-valid' : 'ng-invalid' }}">
+                                                </ng-select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Agente</label>
+                                            <div class="col-md-9" *ngIf="items.users.length > 0">
+                                                <ng-select [allowClear]="true"
+                                                    [items]="items.users"
+                                                    [active]="items.selected.user"
+                                                    placeholder="Ningun propietario seleccionado"
+                                                    (selected)="setUser($event)"
+                                                    (removed)="removeUser($event)"
+                                                    class="{{ building.user_id != null ? 'ng-valid' : 'ng-invalid' }}"
+                                                    [disabled]="selectorDisabled">
+                                                </ng-select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="col-md-3 control-label">Disposición</label>
                                             <div class="col-md-9">
                                                 <select class="form-control" [(ngModel)]="building.land.for_sale" name="for_sale" required>
@@ -54,73 +81,85 @@
                                           </div>
                                         </div>
                                         <div class="form-group">
-                                          <label class="control-label">Precio</label>
-                                          <input [(ngModel)]="building.land.price" type="number"  min="0" step=".01" class="form-control" name="price"/> </div>
+                                            <label class="col-md-3 control-label">Precio</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="building.land.price" type="number"  min="0" step=".01" class="form-control" name="price"/>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Superficie en m<sup>2</sup></label>
-                                          <input [(ngModel)]="building.land.surface" type="number"  min="0" step=".01" class="form-control" name="surface"/> </div>
+                                            <label class="col-md-3 control-label">Superficie en m<sup>2</sup></label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="building.land.surface" type="number"  min="0" step=".01" class="form-control" name="surface"/>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                          <label class="control-label">Costo del predial</label>
-                                          <input [(ngModel)]="building.land.predial_cost" type="number"  min="0" step=".01" class="form-control" name="predial_cost"/> </div>
-                                      <div class="form-group">
-                                          <label class="control-label">Dirección</label>
-                                          <input placeholder="Busca una dirección" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search onkeydown="if">
-                                      </div>
-                                      <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-                                          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-                                      </agm-map>
+                                            <label class="col-md-3 control-label">Costo del predial</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="building.land.predial_cost" type="number"  min="0" step=".01" class="form-control" name="predial_cost"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Dirección</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="building.address" name="address" placeholder="Busca una dirección" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search onkeydown="if" >
+                                            </div>
+                                        </div>
+                                        <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                                            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                                        </agm-map>
                                         <div> <!--   Warehouse container -->
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label">¿Es nueva?</label>
-                                                <div class="col-md-5">
+                                                <label class="col-md-3 control-label">¿Es nueva?</label>
+                                                <div class="col-md-9">
                                                     <div class="checkbox">
                                                         <input type="checkbox" (change)="building.warehouse.is_new = !building.warehouse.is_new" [checked]="building.warehouse.is_new">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                              <label class="control-label">Superficie de la construcción en m<sup>2</sup></label>
-                                              <input [(ngModel)]="building.warehouse.build_surface" type="number"  min="0" step=".01" class="form-control" name="build_surface"/> </div>
-
+                                                <label class="col-md-3 control-label">Superficie de la construcción en m<sup>2</sup></label>
+                                                <div class="col-md-9">
+                                                    <input [(ngModel)]="building.warehouse.build_surface" type="number"  min="0" step=".01" class="form-control" name="build_surface"/>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label">Fecha de construcción</label>
-                                                <div class="col-md-8">
+                                                <label class="col-md-3 control-label">Fecha de construcción</label>
+                                                <div class="col-md-9">
                                                     <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required locale="es" (dateChanged)="onDateChanged($event)"></my-date-picker>
                                                 </div>
                                             </div>
                                         </div>
                                         <div> <!--   Warehouse container -->
                                             <div class="form-group">
-                                                <label class="control-label">Baños</label>
-                                                <input [(ngModel)]="building.office.baths" type="number"  min="0" step="1" class="form-control" name="baths" required/>
+                                                <label class="col-md-3 control-label">Baños</label>
+                                                <div class="col-md-9">
+                                                    <input [(ngModel)]="building.office.baths" type="number"  min="0" step="1" class="form-control" name="baths" required/>
+                                                </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">Estacionamientos</label>
-                                                <input [(ngModel)]="building.office.parkings" type="number"  min="0" step="1" class="form-control" name="parkings" required/>
-                                            </div>
-                                            <!-- <div class="form-group">
-                                                  <label class="col-md-3 control-label">Tipo</label>
-                                                  <div class="col-md-9">
-                                                      <select class="form-control" [(ngModel)]="building.office.kind" name="office_kind" required>
-                                                          <option value="l">Local</option>
-                                                          <option value="o">Oficina</option>
-                                                      </select>
+                                                <label class="col-md-3 control-label">Estacionamientos</label>
+                                                <div class="col-md-9">
+                                                    <input [(ngModel)]="building.office.parkings" type="number"  min="0" step="1" class="form-control" name="parkings" required/>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                         </div>
                                         <div> <!--   Warehouse container -->
                                             <div class="form-group">
-                                                <label class="control-label">Habitaciones</label>
-                                                <input [(ngModel)]="building.house.rooms" type="number"  min="0" step="1" class="form-control" name="rooms" required/>
+                                                <label class="col-md-3 control-label">Habitaciones</label>
+                                                <div class="col-md-9">
+                                                    <input [(ngModel)]="building.house.rooms" type="number"  min="0" step="1" class="form-control" name="rooms" required/>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <textarea class="form-control" name="extra_data" rows="8" cols="80" [(ngModel)]="building.extra_data"></textarea>
-
+                                            <label class="col-md-3 control-label">Información adicional</label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" name="extra_data" rows="8" cols="80" [(ngModel)]="building.extra_data"></textarea>
+                                            </div>
                                         </div>
-                                        <div class="margiv-top-10" style="margin-top: 10px;">
-                                            <button type="submit" class="btn green"> Guardar Cambios </button>
+                                        <div class="margiv-top-10 to-right" style="margin-top: 10px;">
                                             <a [routerLink]="['/', 'inmuebles']" class="btn default"> Cancelar </a>
+                                            <button type="submit" class="btn green"> Guardar Cambios </button>
                                         </div>
                                     </form>
                                 </div>

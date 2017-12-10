@@ -23,45 +23,50 @@
                             <div class="tab-content">
                                 <!-- Informacion personal TAB -->
                                 <div class="tab-pane active" id="tab_1_1">
-                                    <form #branchForm="ngForm" (ngSubmit)="onSubmit()">
+                                    <form #branchForm="ngForm" (ngSubmit)="onSubmit()" class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="control-label">Nombre de la sucursal</label>
-                                            <input [(ngModel)]="branch.name" type="text" class="form-control" name="name" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">Información extra</label>
-                                            <input [(ngModel)]="branch.extra_data" type="text" class="form-control" name="extra_data"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">Gerente ID de la sucursal</label>
-                                            <div class="col-md-8">
-                                                <input auto-complete
-                                                       type="text"
-                                                       [(ngModel)]="branch.user_id"
-                                                       placeholder="Teclea el nombre o el id del supervisor..."
-                                                       [source]="users"
-                                                       list-formatter="name"
-                                                       select-value-of="id"
-                                                       display-property-name="id"
-                                                       class="form-control"
-                                                       name="user"
-                                                       no-match-found-text="No se encontró un supervisor">
+                                            <label class="col-md-3 control-label">Nombre de la sucursal</label>
+                                            <div class="col-md-9">
+                                                <input [(ngModel)]="branch.name" type="text" class="form-control" name="name" required pattern="[a-zA-Z ñÑáéíóúÁÉÍÓÚ\s]*"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">Dirección</label>
-                                            <input placeholder="Busca una dirección" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search>
+                                            <label class="col-md-3 control-label">Información extra</label>
+                                            <div class="col-md-9">
+                                                <textarea [(ngModel)]="branch.extra_data" class="form-control" name="extra_data"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Gerente</label>
+                                            <div class="col-md-9" *ngIf="items.users.length > 0">
+                                                <ng-select [allowClear]="true"
+                                                    [items]="items.users"
+                                                    [active]="items.selected.user"
+                                                    placeholder="Ningun gerente seleccionado"
+                                                    (selected)="setUser($event)"
+                                                    (removed)="removeUser($event)"
+                                                    class="{{ branch.user_id != null ? 'ng-valid' : 'ng-invalid' }}">
+                                                </ng-select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Dirección</label>
+                                            <div class="col-md-9">
+                                                <input placeholder="Busca una dirección" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search>
+                                            </div>
                                         </div>
                                         <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
                                             <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
                                         </agm-map>
                                         <div class="form-group">
-                                            <label class="control-label">Activo</label>
-                                                    <input type="checkbox" [checked]="branch.active" [(ngModel)]="branch.active" name="active">
+                                            <label class="col-md-3 control-label">Activo</label>
+                                            <div class="col-md-9">
+                                                <input type="checkbox" [checked]="branch.active" [(ngModel)]="branch.active" name="active">
+                                            </div>
                                         </div>
-                                        <div class="margiv-top-10" style="margin-top: 10px;">
-                                            <button type="submit" class="btn green" [disabled]="!branchForm.form.valid"> Guardar Cambios </button>
+                                        <div class="margiv-top-10 to-right" style="margin-top: 10px;">
                                             <a [routerLink]="['/', 'usuarios']" class="btn default"> Cancelar </a>
+                                            <button type="submit" class="btn green" [disabled]="!branchForm.form.valid"> Guardar Cambios </button>
                                         </div>
                                     </form>
                                 </div>

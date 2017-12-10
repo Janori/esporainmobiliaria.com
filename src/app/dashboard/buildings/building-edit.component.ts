@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { BuildingService } from '../../shared/services';
-import { Building } from '../../shared/model';
+import { BuildingService, CustomerService, AgentService } from '../../shared/services';
+import { Building, Customer, User } from '../../shared/model';
 import { MapsAPILoader } from '@agm/core';
 import { IMyDpOptions } from 'mydatepicker';
 import {} from '@types/googlemaps';
@@ -12,7 +12,7 @@ declare var lscache: any;
 @Component({
     selector: 'app-building-edit',
     templateUrl: './building-form.component.html',
-    providers: [ BuildingService ],
+    providers: [ BuildingService, CustomerService, AgentService ],
     styles: [`
       agm-map {
           height: 300px;
@@ -49,9 +49,12 @@ export class BuildingEditComponent implements OnInit {
     };
 
    public model: Object = {};
-
+    public items: any = { customers: [], users: [], selected: { customer: [], user: [] }};
+    public selectorDisabled: boolean;
     constructor(
         private _buildingService: BuildingService,
+        private _customerService: CustomerService,
+        private _agentService: AgentService,
         private _router: Router,
         private _route: ActivatedRoute,
         private mapsAPILoader: MapsAPILoader,
@@ -61,6 +64,8 @@ export class BuildingEditComponent implements OnInit {
         this.title = "Editar inmueble";
         this.building = new Building();
         this.url = this._buildingService.url;
+
+        this.selectorDisabled = lscache.get('user').kind == User.KIND_AGENT;
     }
 
     ngOnInit() {
@@ -70,9 +75,17 @@ export class BuildingEditComponent implements OnInit {
         this.longitude = -98.5795;
 
         //set current position
+        var self = this;
         this.getBuilding();
         this._setCurrentPosition();
 
+        setTimeout(function() {
+            self.getOwners();
+            self.getAgents();
+
+            if(self.selectorDisabled)
+                self.items.selected['user'].push({ id: lscache.get('user').id, text: new User(lscache.get('user')).full_name });
+        }, 500);
         //load Places Autocomplete
         this.mapsAPILoader.load().then(() => {
             let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -107,6 +120,30 @@ export class BuildingEditComponent implements OnInit {
         }
     }
 
+    getOwners = () => {
+        this._customerService.getAllCustomers('owners').subscribe(
+            result => {
+                let customers = result.data;
+                customers.forEach(customer => this.items['customers'].push({id: customer.id, text: new Customer(customer).full_name}));
+            },
+            error => {
+                console.log(error);
+                alert('Hay un error en la petición');
+            }
+        )
+    }
+
+    getAgents  = () => {
+        this._agentService.getAllAgents().subscribe(result => {
+            let agents = result.data;
+            agents.forEach(agent => this.items['users'].push({id: agent.id, text: new User(agent).full_name}));
+        },
+        error => {
+            toastr.error('Hubo un error en el servidor', '¡Error!');
+            console.log(error);
+        });
+    }
+
     getBuilding = () => {
         this._route.params.forEach((params : Params) => {
 			let id = params['id'];
@@ -117,6 +154,15 @@ export class BuildingEditComponent implements OnInit {
                     	this._router.navigate(['/']);
 
                     this.building = new Building(result.data);
+
+                    if(this.building.customer_id != null)
+                        this.items.selected['customer'].push({ id: this.building.customer.id, text: this.building.customer.full_name });
+
+                    if(this.building.user_id != null)
+                        this.items.selected['user'].push({ id: this.building.user.id, text: this.building.user.full_name });
+
+                    var d = new Date(this.building.warehouse.building_date);
+                    this.model = {date: { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() }}
                     this.latitude = parseFloat(this.building.land.location.latitude);
                     this.longitude = parseFloat(this.building.land.location.longitude);
 				},
@@ -133,6 +179,7 @@ export class BuildingEditComponent implements OnInit {
 			let id = params['id'];
             this.building.land.location.latitude = "" + this.latitude;
             this.building.land.location.longitude = "" + this.longitude;
+            this.building.address = $('input[name="address"]').val();
             this._buildingService.editBuilding(id, this.building).subscribe(
                 result => {
                     bootbox.alert(result.msg);
@@ -172,4 +219,11 @@ export class BuildingEditComponent implements OnInit {
         );
     }
 
+    setUser = (value: any) => {
+        this.building.user_id = value.id;
+    }
+
+    removeUser = (value: any) => {
+        this.building.user_id = null;
+    }
 }
