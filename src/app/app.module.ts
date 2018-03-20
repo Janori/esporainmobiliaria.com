@@ -20,6 +20,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { FileUploadModule } from 'ng2-file-upload';
 import { SelectModule } from 'ng2-select';
+import { NgxStepperModule } from 'ngx-stepper';
+import { TabsModule, PaginationModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -44,6 +46,7 @@ import { LockscreenComponent } from './dashboard/lockscreen/lockscreen.component
 import { GeolocationComponent } from './dashboard/geolocation/geolocation.component';
 import { CustomersComponent } from './dashboard/customers/customers.component';
 import { CustomerFormComponent } from './dashboard/customers/customer-form.component';
+import { CampaignsComponent } from './dashboard/campaigns/campaigns.component';
 
 
 @NgModule({
@@ -72,7 +75,8 @@ import { CustomerFormComponent } from './dashboard/customers/customer-form.compo
     LockscreenComponent,
     GeolocationComponent,
     CustomersComponent,
-    CustomerFormComponent
+    CustomerFormComponent,
+    CampaignsComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +97,8 @@ import { CustomerFormComponent } from './dashboard/customers/customer-form.compo
     IonRangeSliderModule,
     FileUploadModule,
     SelectModule,
+    TabsModule.forRoot(),
+    PaginationModule.forRoot(),
     routing
   ],
   providers: [appRoutingProviders, AuthService, AuthGuard],

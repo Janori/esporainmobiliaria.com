@@ -1,0 +1,8 @@
+tab.active.tab-pane {
+    overflow: auto;
+}
+
+
+table tr td:first-child {
+    text-align: center;
+}

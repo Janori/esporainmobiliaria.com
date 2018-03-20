@@ -7,10 +7,10 @@ export class Service {
     public test: boolean = false;
 
     constructor() {
-        if(!this.test || !/localhost/.test(document.location.host))
+        if(!/localhost/.test(document.location.host))
             this.url = 'https://esporainmobiliaria.com/api/'; // prod
         else
-            this.url = 'http://api.esporainmobiliaria.local/'; // test
+            this.url = 'http://esporainmobiliaria.com/api/'; // test
     }
 
     headers = () => {

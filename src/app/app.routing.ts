@@ -21,6 +21,7 @@ import { LockscreenComponent } from './dashboard/lockscreen/lockscreen.component
 import { GeolocationComponent } from './dashboard/geolocation/geolocation.component';
 import { CustomersComponent } from './dashboard/customers/customers.component';
 import { CustomerFormComponent } from './dashboard/customers/customer-form.component';
+import { CampaignsComponent } from './dashboard/campaigns/campaigns.component';
 
 const appRoutes : Routes = [
     { path: 'login', component: LoginComponent },
@@ -81,6 +82,7 @@ const appRoutes : Routes = [
                 ],
             },
             { path: 'geolocalizacion', component: GeolocationComponent },
+            { path: 'campanias', component: CampaignsComponent },
             { path: '**', component: HomeComponent }
         ],
         canActivate: [AuthGuard]

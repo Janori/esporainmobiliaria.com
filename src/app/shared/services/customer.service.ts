@@ -44,4 +44,18 @@ export class CustomerService extends Service {
                          .map(res => res.json());
     }
 
+    getProspectsByBuilding = (kind: string) => {
+        let headers = this.headers();
+
+        return this._http.post(this.url + 'customer/prospects', { kind }, { headers })
+                         .map(res => res.json());
+    }
+
+    sendCampaign = (data: any) => {
+        let headers = this.headers();
+
+        return this._http.post(this.url + 'customer/campaign', data, { headers })
+                         .map(res => res.json());
+    }
+
 }
