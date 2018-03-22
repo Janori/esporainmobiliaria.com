@@ -61,4 +61,12 @@ export class User {
 	get full_name() {
 		return `${this.name} ${this.first_surname} ${this.last_surname}`;
 	}
+
+	get kind_full() {
+		switch(this.kind) {
+            case 'a': return 'Administrador';
+            case 'u': return 'Agente';
+            case 's': return 'Supervisor';
+		}
+	}
 }

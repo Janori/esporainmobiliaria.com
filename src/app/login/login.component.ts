@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           error => {
               toastr.error('¡Error!', 'Hubo un error en el servidor');
               console.log(error);
-              alert(error.statusText);
+              // alert(error.statusText);
           });
   }
 }

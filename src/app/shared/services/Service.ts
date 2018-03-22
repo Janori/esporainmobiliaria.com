@@ -4,13 +4,12 @@ declare var lscache: any;
 
 export class Service {
     public url: string;
-    public test: boolean = false;
 
     constructor() {
-        if(!/localhost/.test(document.location.host))
-            this.url = 'https://esporainmobiliaria.com/api/'; // prod
-        else
-            this.url = 'http://esporainmobiliaria.com/api/'; // test
+        // if(!/localhost/.test(document.location.host))
+            this.url = 'http://www.esporainmobiliaria.com/api/'; // prod
+        // else
+            // this.url = 'http://esporainmobiliaria.com/api/'; // test
     }
 
     headers = () => {

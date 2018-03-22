@@ -18,7 +18,7 @@
                 <!-- Sidebar user Nombre -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"> {{ user.name + ' ' + user.first_surname + ' ' + user.last_surname }} </div>
-                    <div class="profile-usertitle-job"> {{ user.kind }} </div>
+                    <div class="profile-usertitle-job"> {{ user.kind_full }} </div>
                 </div>
                 <!-- Fin Sidebar user Nombre -->
             </div>
@@ -109,7 +109,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label">Nombre de usuario</label>
+                                            <label class="col-md-3 control-label">Colonia</label>
                                             <div class="col-md-9">
                                               <input [(ngModel)]="user.colonia" type="text" class="form-control" name="colonia" required />
                                             </div>
@@ -136,6 +136,17 @@
                                             <label class="col-md-3 control-label">País</label>
                                             <div class="col-md-9">
                                                 <input [(ngModel)]="user.pais" type="text" class="form-control" name="pais" required />
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Rol del usuario</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" [(ngModel)]="user.kind" name="kind" required>
+                                                    <option value="a">Administrador</option>
+                                                    <option value="u">Agente</option>
+                                                    <option value="s">Supervisor</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="margiv-top-10 to-right">

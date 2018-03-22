@@ -40,65 +40,73 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <span class="caption-subject font-dark sbold uppercase">Precio</span>
-                                    <ion-range-slider #priceFilter
-                                        type="double"
-                                        min="0"
-                                        max="20000000"
-                                        from="250000"
-                                        from_shadow="true"
-                                        to="20000000"
-                                        to_shadow="true"
-                                        grid="true"
-                                        grid_num="5"
-                                        prefix="$ "
-                                        postfix=" M.N"
-                                        step="250000"
-                                        decorate_both="false">
-                                    </ion-range-slider>
-                                    <span class="caption-subject font-dark sbold uppercase">Superficie</span>
-                                    <ion-range-slider #surfaceFilter
-                                        type="double"
-                                        min="0"
-                                        max="250000"
-                                        from="10000"
-                                        from_shadow="true"
-                                        to="250000"
-                                        to_shadow="true"
-                                        grid="true"
-                                        grid_num="5"
-                                        postfix=" m<sup>2</sup>"
-                                        step="1000"
-                                        decorate_both="false">
-                                    </ion-range-slider>
-                                    <span class="caption-subject font-dark sbold uppercase">Baños</span>
-                                    <ion-range-slider #bathFilter
-                                        type="double"
-                                        min="0"
-                                        max="10"
-                                        from="0"
-                                        from_shadow="true"
-                                        to="5"
-                                        to_shadow="true"
-                                        grid="true"
-                                        grid_num="5"
-                                        step="1"
-                                        decorate_both="false">
-                                    </ion-range-slider>
-                                    <span class="caption-subject font-dark sbold uppercase">Cuartos</span>
-                                    <ion-range-slider #roomFilter
-                                        type="double"
-                                        min="0"
-                                        max="10"
-                                        from="0"
-                                        from_shadow="true"
-                                        to="5"
-                                        to_shadow="true"
-                                        grid="true"
-                                        grid_num="5"
-                                        step="1"
-                                        decorate_both="false">
-                                    </ion-range-slider>
+                                    <div class="row">
+                                            <span class="caption-subject font-dark sbold uppercase">Precio</span>
+                                            <ion-range-slider #priceFilter
+                                            type="double"
+                                            min="0"
+                                            max="5000000"
+                                            from="250000"
+                                            from_shadow="true"
+                                            to="5000000"
+                                            to_shadow="true"
+                                            grid="true"
+                                            grid_num="5"
+                                            prefix="$ "
+                                            postfix=" M.N"
+                                            step="50000"
+                                            decorate_both="false">
+                                            </ion-range-slider>
+                                    </div>
+                                    <div class="row">
+                                            <span class="caption-subject font-dark sbold uppercase">Superficie</span>
+                                            <ion-range-slider #surfaceFilter
+                                            type="double"
+                                            min="0"
+                                            max="250000"
+                                            from="10000"
+                                            from_shadow="true"
+                                            to="250000"
+                                            to_shadow="true"
+                                            grid="true"
+                                            grid_num="5"
+                                            postfix=" m<sup>2</sup>"
+                                            step="1000"
+                                            decorate_both="false">
+                                            </ion-range-slider>
+                                    </div>
+                                    <div class="row">
+                                            <span class="caption-subject font-dark sbold uppercase">Baños</span>
+                                            <ion-range-slider #bathFilter
+                                            type="double"
+                                            min="0"
+                                            max="10"
+                                            from="0"
+                                            from_shadow="true"
+                                            to="5"
+                                            to_shadow="true"
+                                            grid="true"
+                                            grid_num="5"
+                                            step="1"
+                                            decorate_both="false">
+                                            </ion-range-slider>
+                                    </div>
+                                    <div class="row">
+                                            <span class="caption-subject font-dark sbold uppercase">Cuartos</span>
+                                            <ion-range-slider #roomFilter
+                                            type="double"
+                                            min="0"
+                                            max="10"
+                                            from="0"
+                                            from_shadow="true"
+                                            to="5"
+                                            to_shadow="true"
+                                            grid="true"
+                                            grid_num="5"
+                                            step="1"
+                                            decorate_both="false">
+                                            </ion-range-slider>
+                                    </div>
                                 </div>
                                 <div class="form-actions">
                                     <div class="row">
@@ -156,7 +164,7 @@
                                       <td>{{ building.type }}</td>
                                       <td>{{ building.disposition }}</td>
                                       <td>{{ building.land.surface }} m<sup>2</sup></td>
-                                      <td>$ {{ building.price }} M.N.</td>
+                                      <td>{{ building.price | currency:'MXN':'$' }}</td>
                                       <td>
                                           <div class="btn-group">
                                               <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Opciones

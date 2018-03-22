@@ -132,7 +132,7 @@ export class BuildingDetailComponent implements OnInit {
 
                     this.building.images.forEach((image) => {
                         this.slides.push({
-                         image: this.url + 'images/bld/' + image.path
+                         image: this.url + 'public/images/bld/' + image.path
                        });
                     });
 				},
