@@ -70,4 +70,10 @@ export class BuildingService extends Service {
         return this._http.post(this.url + 'building/send', params, { headers })
                          .map(res => res.json());
     }
+
+    makeTransaction(data: any) {
+        let headers = this.headers();
+        return this._http.post(this.url + 'building/sell', data, { headers })
+                         .map(res => res.json());
+    }
 }

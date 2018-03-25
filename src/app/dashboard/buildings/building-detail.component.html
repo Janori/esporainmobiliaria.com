@@ -184,7 +184,7 @@
 
                                     <div *ngIf="prospect && prospect.id">
                                         <h3>Información del prospecto</h3>
-                                        <table>
+                                        <table class="prospect-info">
                                             <tbody>
                                                 <tr>
                                                     <td>Nombre completo</td>
@@ -206,20 +206,23 @@
                                     <div class="form-group" *ngIf="building.user">
                                         <label class="col-md-3 control-label">Agente</label>
                                         <div class="col-md-9">
-                                            <input type="text" [(ngModel)]="building.user.full_name" name="user" class="form-control" disabled>
+                                            <input type="text" [(ngModel)]="sale.user.full_name" name="user" class="form-control" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Cantidad acordada ($)</label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control">
+                                            <input type="number" [(ngModel)]="sale.amount" class="form-control" name="amount">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Observaciones</label>
                                         <div class="col-md-9">
-                                            <textarea class="form-control"></textarea>
+                                            <textarea class="form-control" [(ngModel)]="sale.extra_data" name="extra_data"></textarea>
                                         </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary btn-lg" type="submit">Concretar venta <i class="fa fa-check" aria-hidden="true"></i></button>
                                     </div>
                                 </div>
                             </div>

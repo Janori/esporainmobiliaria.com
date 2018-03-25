@@ -1,0 +1,21 @@
+agm-map {
+    height: 300px;
+}
+
+.scrollable {
+    overflow-y: scroll;
+    max-height: 245px;
+}
+
+.prospect-info {
+    td  {
+        padding: 10px;
+        text-align: left;
+    }
+    tr td:first-child {
+        text-align: right !important;
+        background: #337ab7;
+        color: #fff;
+        font-weight: bold;
+    }
+}

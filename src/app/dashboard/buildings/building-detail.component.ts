@@ -1,27 +1,22 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BuildingService, CustomerService } from '../../shared/services';
-import { Building, Customer } from '../../shared/model';
+import { Building, Customer, Sale, User } from '../../shared/model';
 import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 import {} from '@types/bootbox';
 import {} from '@types/toastr';
+import * as moment from 'moment';
+
+declare var google: any;
 
 @Component({
   selector: 'app-building-detail',
   templateUrl: './building-detail.component.html',
-  providers: [ BuildingService, CustomerService ],
-  styles: [`
-    agm-map {
-        height: 300px;
-    }
-
-    .scrollable {
-        overflow-y: scroll;
-        max-height: 245px;
-    }
- `]
+  styleUrls: ['./building-detail.component.scss'],
+  providers: [ BuildingService, CustomerService ]
 })
+
 export class BuildingDetailComponent implements OnInit {
     public title: string;
     public building: Building;
@@ -31,6 +26,7 @@ export class BuildingDetailComponent implements OnInit {
     public zoom: number;
     public keysEnum: any = {};
     public prospect: Customer = null;
+    public sale: Sale = null;
 
     public myInterval: number = 5000;
     public slides: any[] = [];
@@ -77,6 +73,11 @@ export class BuildingDetailComponent implements OnInit {
         }
 
         this.isSelling = this._router.url.includes('vender');
+
+        if(this.isSelling) {
+            this.sale = new Sale();
+            this.sale.sale_date = moment().format("YYYY-MM-DD HH:mm:ss");
+        }
     }
 
     ngOnInit() {
@@ -104,6 +105,7 @@ export class BuildingDetailComponent implements OnInit {
     getProspect(id: number) {
         this._customerService.getCustomer(id).subscribe(result => {
             this.prospect = new Customer(result.data.customer);
+            this.sale.customer_id = this.prospect.id;
         });
     }
 
@@ -120,6 +122,17 @@ export class BuildingDetailComponent implements OnInit {
                     this.latitude = parseFloat(this.building.land.location.latitude);
                     this.longitude = parseFloat(this.building.land.location.longitude);
                     this.title = 'Inmueble #' + this.building.id;
+
+                    if(this.isSelling) {
+                        this.sale.user = new User(this.building.user);
+                        this.sale.user_id = Number(this.sale.user.id);
+                        this.sale.building_id = id;
+
+                        if(!this.building.isAvailable) {
+                            alert("Este inmueble no está en venta");
+                            this._router.navigate(['/']);
+                        }
+                    }
 
                     var service = new google.maps.places.PlacesService(this.map);
                    service.nearbySearch({
@@ -139,7 +152,7 @@ export class BuildingDetailComponent implements OnInit {
 
                     this.building.images.forEach((image) => {
                         this.slides.push({
-                         image: this.url + 'public/images/bld/' + image.path
+                         image: this.url + 'storage/images/bld/' + image.path
                        });
                     });
 				},
@@ -214,6 +227,40 @@ export class BuildingDetailComponent implements OnInit {
                         alert('Hay un error en la petición');
                     }
                 )
+            }
+        });
+    }
+
+    onSubmit() {
+        var self = this;
+        bootbox.confirm({
+            message: "¿Está seguro que desea realizar esta venta (El proceso es irreversible)?",
+            buttons: {
+                confirm: {
+                    label: 'Sí',
+                    className: 'btn-primary'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-default'
+                }
+            },
+            callback: function (result) {
+                if(result) {
+                    self._buildingService.makeTransaction(self.sale).subscribe(
+                        result => {
+                            bootbox.alert(result.msg);
+                            if(result.status) {
+                                self._router.navigate(['/inmuebles']);
+                            }
+
+                        },
+                        error => {
+                            console.log(error);
+                            alert('Hay un error en la petición');
+                        }
+                    )
+                }
             }
         });
     }

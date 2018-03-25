@@ -111,4 +111,8 @@ export class Building {
     get price() {
         return parseFloat("" + this.land.price).toFixed(2);
     }
+
+    get isAvailable(): boolean {
+        return this.customer_id == null; 
+    }
 }
