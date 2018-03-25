@@ -7,7 +7,7 @@ export class Service {
 
     constructor() {
         // if(!/localhost/.test(document.location.host))
-            this.url = 'http://www.esporainmobiliaria.com/api/'; // prod
+            this.url = 'https://www.esporainmobiliaria.com/api/'; // prod
         // else
             // this.url = 'http://esporainmobiliaria.com/api/'; // test
     }

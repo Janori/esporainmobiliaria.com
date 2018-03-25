@@ -181,6 +181,26 @@
                                             </ng-select>
                                         </div>
                                     </div>
+
+                                    <div *ngIf="prospect && prospect.id">
+                                        <h3>Información del prospecto</h3>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nombre completo</td>
+                                                    <td>{{ prospect.full_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email</td>
+                                                    <td>{{ prospect.email }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Género</td>
+                                                    <td>{{ prospect.gender_full }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group" *ngIf="building.user">

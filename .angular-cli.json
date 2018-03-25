@@ -38,7 +38,12 @@
         "../node_modules/bootbox/bootbox.min.js",
         "../node_modules/chart.js/dist/Chart.min.js",
         "../node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
-        "../node_modules/toastr/build/toastr.min.js"
+        "../node_modules/toastr/build/toastr.min.js",
+        "../src/assets/global/scripts/app.min.js",
+        "../src/assets/layouts/layout4/scripts/layout.min.js",
+        "../src/assets/layouts/layout4/scripts/demo.js",
+        "../src/assets/layouts/global/scripts/quick-sidebar.min.js",
+        "../src/assets/layouts/global/scripts/quick-nav.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

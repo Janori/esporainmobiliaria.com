@@ -85,12 +85,12 @@
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <span class="username username-hide-on-mobile">{{ user.name }}</span>
                             <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                            <img alt="" class="img-circle" src="{{ this.url + 'public/' + user.img_path }}" /> </a>
+                            <img alt="" class="img-circle" src="{{ this.url + 'storage/' + user.img_path }}" /> </a>
                         <ul class="dropdown-menu dropdown-menu-default">
-                            <li>
+                            <!-- <li>
                                 <a (click)="doLockscreen()">
                                     <i class="icon-lock"></i> Bloquear Pantalla </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a (click)="doLogout()">
                                     <i class="icon-key"></i> Salir </a>

@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.user = new User(lscache.get('user'));
-        this.url = this._authService.url.replace('/api/', '') + '/';
+        this.url = this._authService.url;
         $('body').attr('class', 'page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo');
     }
 

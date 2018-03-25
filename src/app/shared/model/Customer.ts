@@ -36,4 +36,10 @@ export class Customer {
     get full_name() {
         return `${this.name} ${this.first_surname} ${this.last_surname}`;
     }
+
+    get gender_full() {
+        if(this.gender == 'm')
+            return 'Masculino';
+        return 'Femenino';
+    }
 }

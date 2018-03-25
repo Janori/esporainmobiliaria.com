@@ -30,6 +30,7 @@ export class BuildingDetailComponent implements OnInit {
     public longitude: number;
     public zoom: number;
     public keysEnum: any = {};
+    public prospect: Customer = null;
 
     public myInterval: number = 5000;
     public slides: any[] = [];
@@ -98,6 +99,12 @@ export class BuildingDetailComponent implements OnInit {
 
     mapReady = (map) => {
         this.map = map;
+    }
+
+    getProspect(id: number) {
+        this._customerService.getCustomer(id).subscribe(result => {
+            this.prospect = new Customer(result.data.customer);
+        });
     }
 
     getBuilding = () => {
@@ -213,6 +220,7 @@ export class BuildingDetailComponent implements OnInit {
 
     setCustomer = (value: any) => {
         this.building.customer_id = value.id;
+        this.getProspect(value.id);
     }
 
     removeCustomer = (value: any) => {
