@@ -265,6 +265,40 @@ export class BuildingDetailComponent implements OnInit {
         });
     }
 
+    removeSold(id) {
+        var self = this;
+        bootbox.confirm({
+            message: "¿Está seguro que desea anular esta venta (El proceso es irreversible)?",
+            buttons: {
+                confirm: {
+                    label: 'Sí',
+                    className: 'btn-primary'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-default'
+                }
+            },
+            callback: function (result) {
+                if(result) {
+                    self._buildingService.removeCustomer(id).subscribe(
+                        result => {
+                            bootbox.alert(result.msg);
+                            if(result.status) {
+                                self._router.navigate(['/inmuebles']);
+                            }
+
+                        },
+                        error => {
+                            console.log(error);
+                            alert('Hay un error en la petición');
+                        }
+                    )
+                }
+            }
+        });
+    }
+
     setCustomer = (value: any) => {
         this.building.customer_id = value.id;
         this.getProspect(value.id);

@@ -76,4 +76,10 @@ export class BuildingService extends Service {
         return this._http.post(this.url + 'building/sell', data, { headers })
                          .map(res => res.json());
     }
+
+    removeCustomer(id: number) {
+        let headers = this.headers();
+        return this._http.post(this.url + 'building/' + id + '/remove', null, { headers })
+                         .map(res => res.json());
+    }
 }

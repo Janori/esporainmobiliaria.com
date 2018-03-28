@@ -99,6 +99,12 @@
                                   </div>
                               </div>
                           </div>
+                          <hr>
+                          <div class="col-md-6 building-sold" *ngIf="building.customer_id != null">
+                              <p>Este inmueble fue vendido a: <span>{{ building.customer.full_name}}</span></p>
+                              <p>Este inmueble fue vendido por: <span>{{ building.user.full_name}}</span></p>
+                              <button class="btn btn-danger" (click)="removeSold(building.id)">Revocar venta <i class="fa fa-trash" aria-hidden="true"></i></button>
+                          </div>
                       </div>
                   </div>
               </div>
