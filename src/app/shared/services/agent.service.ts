@@ -18,4 +18,11 @@ export class AgentService extends UserService {
 			             .map(res => res.json());
     }
 
+    getChartData() {
+        let headers = this.headers();
+
+        return this.http.get(this.url + 'home', { headers })
+                   .map(res => res.json());
+    }
+
 }
