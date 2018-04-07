@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { User } from '../shared/model/User';
 import { AuthService } from '../shared/security/auth.service';
+import { BuildingService } from '../shared/services/building.service';
 
 declare var $: any;
 declare var lscache: any;
@@ -14,14 +15,16 @@ declare var lscache: any;
       '../../assets/layout/css/custom.min.css',
   ],
   encapsulation: ViewEncapsulation.None,
-  providers: [ AuthService ],
+  providers: [ AuthService, BuildingService ],
 })
 
 export class DashboardComponent implements OnInit {
     public user: User;
     public url: string;
 
-    constructor(private _authService: AuthService) {
+    constructor(
+        private _authService: AuthService,
+        private _buildingService: BuildingService) {
     }
 
     ngOnInit() {
@@ -37,6 +40,39 @@ export class DashboardComponent implements OnInit {
     doLockscreen = () => {
         lscache.set('lock', true);
         this._authService.lockscreen();
+    }
+
+    ZIPCodeTendency() {
+        var self = this;
+        bootbox.prompt({
+            size: 'small',
+            title: "Ingresa el código postal a buscar",
+            inputType: 'number',
+            buttons: {
+                confirm: {
+                label: 'Aceptar',
+                className: 'btn-primary'
+                },
+                    cancel: {
+                    label: 'Cancelar',
+                    className: 'btn-default'
+                }
+            },
+            callback: function(result) {
+                self._buildingService.getTendency(parseInt(result)).subscribe(
+                    result => {
+                        if(result.status)
+                            bootbox.alert(result.msg);
+                        else
+                            toastr.error(result.msg, '¡Error!');
+                    },
+                    error => {
+                        console.log(error);
+                        toastr.error('Hay un error en la petición', '¡Error!');
+                    }
+                );
+            }
+        });
     }
 
 }

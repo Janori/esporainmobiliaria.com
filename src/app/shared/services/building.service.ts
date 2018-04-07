@@ -82,4 +82,11 @@ export class BuildingService extends Service {
         return this._http.post(this.url + 'building/' + id + '/remove', null, { headers })
                          .map(res => res.json());
     }
+
+    getTendency(zipCode: number) {
+        let headers = this.headers();
+
+        return this._http.get(this.url + 'building/cp/' + zipCode, { headers })
+                         .map(res => res.json());
+    }
 }

@@ -128,7 +128,7 @@ export class BuildingEditComponent implements OnInit {
             },
             error => {
                 console.log(error);
-                alert('Hay un error en la petición');
+                toastr.error('Hay un error en la petición', '¡Error!');
             }
         )
     }
@@ -168,7 +168,7 @@ export class BuildingEditComponent implements OnInit {
 				},
 				error => {
 					console.log(error);
-					alert('Hay un error en la petición');
+					toastr.error('Hay un error en la petición', '¡Error!');
 				}
 			);
 		});
@@ -188,7 +188,7 @@ export class BuildingEditComponent implements OnInit {
                 },
                 error => {
                     console.log(error);
-                    alert('Hay un error en la petición');
+                    toastr.error('Hay un error en la petición', '¡Error!');
                 }
             );
         });

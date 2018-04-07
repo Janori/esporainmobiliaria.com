@@ -36,7 +36,7 @@ export class UserCreateComponent implements OnInit {
 			},
 			error => {
 				console.log(error);
-			    alert('Hay un error en la petición');
+			    toastr.error('Hay un error en la petición', '¡Error!');
 			}
 		);
     }
