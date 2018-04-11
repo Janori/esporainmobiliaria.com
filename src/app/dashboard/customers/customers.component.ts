@@ -48,6 +48,7 @@ export class CustomersComponent implements OnInit {
                 result.data.forEach(customer => {
                     this.customers.push(new Customer(customer));
                 });
+                this.dtTrigger.next();
             }, error => {
                 alert('Hubo un error en el servidor');
             }
