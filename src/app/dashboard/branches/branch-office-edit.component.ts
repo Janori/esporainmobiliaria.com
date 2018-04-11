@@ -50,7 +50,7 @@ export class BranchOfficeEditComponent implements OnInit {
         var self = this;
         this.getBranch();
         setTimeout(function() {
-            self.getSupervisors();
+            self.getGerentes();
         }, 500);
 
         //set google maps defaults
@@ -122,7 +122,7 @@ export class BranchOfficeEditComponent implements OnInit {
 		});
     }
 
-    getSupervisors = () => {
+    getGerentes = () => {
         this._userService.getAllByKind(User.KIND_SUPERVISOR).subscribe(
             result => {
                 let agents = result.data;

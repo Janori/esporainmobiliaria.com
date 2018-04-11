@@ -45,7 +45,7 @@ export class BranchOfficeCreateComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getSupervisors();
+        this.getGerentes();
 
         //set google maps defaults
         this.zoom = 4;
@@ -92,7 +92,7 @@ export class BranchOfficeCreateComponent implements OnInit {
         }
     }
 
-    getSupervisors = () => {
+    getGerentes = () => {
         this._userService.getAllByKind(User.KIND_SUPERVISOR).subscribe(
             result => {
                 let agents = result.data;

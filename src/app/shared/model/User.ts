@@ -67,7 +67,7 @@ export class User {
 		switch(this.kind) {
             case 'a': return 'Administrador';
             case 'u': return 'Agente';
-            case 's': return 'Supervisor';
+            case 's': return 'Gerente';
             case 'p': return 'Partner';
 		}
 	}
