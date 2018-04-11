@@ -31,6 +31,7 @@ export class User {
 	public static KIND_ADMIN = 'a';
 	public static KIND_SUPERVISOR = 's';
 	public static KIND_AGENT = 'u';
+	public static KIND_PARTNER = 'p';
 
 	constructor(obj?: any) {
 		this.id = obj && obj.id || 0;
@@ -67,6 +68,7 @@ export class User {
             case 'a': return 'Administrador';
             case 'u': return 'Agente';
             case 's': return 'Supervisor';
+            case 'p': return 'Partner';
 		}
 	}
 }

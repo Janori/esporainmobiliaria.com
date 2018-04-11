@@ -12,10 +12,74 @@
 
 <!-- Inicio del contenido de la pagina -->
 <div class="row">
-  <app-goal-cards [data]="gcNewBuildings"></app-goal-cards>
-  <app-goal-cards [data]="gcActiveBuildings"></app-goal-cards>
-  <app-goal-cards [data]="gcSoldBuildings"></app-goal-cards>
-  <app-goal-cards [data]="gcExpiredBuildings"></app-goal-cards>
+  <app-goal-cards [data]="gcNewBuildings" (click)="onCardClick(gcNewBuildings.data)"></app-goal-cards>
+  <app-goal-cards [data]="gcActiveBuildings" (click)="onCardClick(gcActiveBuildings.data)"></app-goal-cards>
+  <app-goal-cards [data]="gcSoldBuildings" (click)="onCardClick(gcSoldBuildings.data)"></app-goal-cards>
+  <app-goal-cards [data]="gcExpiredBuildings" (click)="onCardClick(gcExpiredBuildings.data)"></app-goal-cards>
+</div>
+
+
+<div class="row" *ngIf="isDataLoaded">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-home font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Inmuebles</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div style="overflow-x:auto;">
+                    <table class="table table-striped table-bordered table-hover table-checkable order-column">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Disposición</th>
+                                <th>Superficie</th>
+                                <th>Precio</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd gradeX" *ngFor="let building of data">
+                                <td>{{ building.id }}</td>
+                                <td>{{ building.type }}</td>
+                                <td>{{ building.disposition }}</td>
+                                <td>{{ building.land.surface }} m<sup>2</sup></td>
+                                <td>{{ building.price | currency:'MXN':'$' }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Opciones
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu pull-left" role="menu">
+                                            <li *ngIf="building.isAvailable">
+                                                <a [routerLink]="[building.id, 'vender']">
+                                                    <i class="icon-basket-loaded"></i> Vender </a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="[building.id]">
+                                                    <i class="icon-book-open"></i> Mostrar </a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="[building.id, 'editar']">
+                                                    <i class="icon-note"></i> Editar </a>
+                                            </li>
+                                            <li>
+                                                <a (click)="deleteBuilding(building.id)">
+                                                    <i class="icon-trash"></i> Eliminar </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- <div class="row">

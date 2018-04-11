@@ -1,0 +1,8 @@
+.dashboard-stat2 {
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.dashboard-stat2:hover {
+    background: #eee;
+}

@@ -11,7 +11,8 @@ export class GoalCardsComponent implements OnInit {
       title: "Titulo",
       value: 45,
       percent: 70,
-      icon: "icon-pie-chart"
+      icon: "icon-pie-chart",
+      data: null
   }
 
   constructor() { }
@@ -27,5 +28,6 @@ export interface IGoalCard{
   title:String,
   value:Number,
   percent:Number,
-  icon:String
+  icon:String,
+  data: any
 }
