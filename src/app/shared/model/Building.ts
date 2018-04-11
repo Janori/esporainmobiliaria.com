@@ -19,6 +19,7 @@ export class Building {
     public customer: Customer;
     public user_id: number;
     public user: User;
+    public sale: any;
 
     public type: string;
 
@@ -38,6 +39,7 @@ export class Building {
     	this.updated_at = obj && obj.updated_at || null;
         this.type = obj && obj.type || null;
         this.address = obj && obj.address || '';
+        this.sale = obj && obj.sale || '';
 
         this.customer_id = obj && obj.customer_id || null;
         this.user_id = obj && obj.user_id || null;
@@ -113,6 +115,6 @@ export class Building {
     }
 
     get isAvailable(): boolean {
-        return this.customer_id == null; 
+        return this.customer_id == null;
     }
 }
