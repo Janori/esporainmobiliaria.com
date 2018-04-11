@@ -20,7 +20,15 @@ export class BuildingsComponent implements OnInit {
 
     public dtOptions: DataTables.Settings = {
         language: { url: 'assets/DatatablesSpanish.json' },
-        destroy: true
+        destroy: true,
+        columnDefs: [
+            {
+                targets: [
+                    1,2,3,4,5
+                ],
+                searchable: false
+            }
+        ]
     };
     public dtTrigger: Subject<any> = new Subject<any>();
 
