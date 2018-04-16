@@ -112,6 +112,9 @@
 <!-- Fin del divisor header/content -->
 <!-- Inicio del contenedor -->
 <div class="page-container">
+    <div *ngIf="isAdminLogged" class="admin-message">
+        Sesión como administrador activa <a (click)="returnToAdmin()">click aquí para regresar</a>
+    </div>
     <!-- Inicio del Sidebar-->
     <app-sidebar></app-sidebar>
     <!-- Fin del Sidebar -->

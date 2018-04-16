@@ -44,6 +44,10 @@
                                                 </button>
                                                 <ul class="dropdown-menu pull-left" role="menu">
                                                     <li>
+                                                        <a (click)="loginAsUser(user)">
+                                                        <i class="icon-login"></i> Iniciar sesión como </a>
+                                                    </li>
+                                                    <li>
                                                         <a [routerLink]="[user.id, 'editar']">
                                                         <i class="icon-user-following"></i> Editar </a>
                                                     </li>

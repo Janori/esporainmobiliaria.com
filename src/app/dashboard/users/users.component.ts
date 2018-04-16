@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services';
+import { AuthService } from '../../shared/security/auth.service';
 import { User } from '../../shared/model/User';
 import { Subject } from 'rxjs/Rx';
 
@@ -22,7 +23,8 @@ export class UsersComponent implements OnInit {
     public dtTrigger: Subject<any> = new Subject<any>();
 
     constructor(
-      private _userService: UserService
+      private _userService: UserService,
+      private _authService: AuthService
     ) { }
 
     ngOnInit() {
@@ -32,7 +34,7 @@ export class UsersComponent implements OnInit {
     getAllUsers = () => {
         this._userService.getAllUsers().subscribe(
             result => {
-                this.users = result.data;
+                this.users = result.data.users;
 
                 for(var i = 0; i < this.users.length; i++)
                    this.users[i] = new User(this.users[i]);
@@ -80,6 +82,28 @@ export class UsersComponent implements OnInit {
                 }
             }
         });
+    }
+
+    loginAsUser(user: User) {
+        lscache.set('aminProfile', lscache.get('user'));
+        lscache.set('isAdmin', true);
+        this._authService.customLogin(user).subscribe(
+            result => {
+                let data = result.data;
+                if(result.status) {
+                    toastr.success('¡Exito!', 'Bienvenido ' + data.user.name + ' ' + data.user.first_surname);
+                    lscache.set('user', data.user, data.ttl);
+                    lscache.set('authToken', data.token, data.ttl);
+                    window.location.href = '/';
+                }
+                else
+                  toastr.error('¡Error!', result.msg);
+            },
+            error => {
+                toastr.error('¡Error!', 'Hubo un error en el servidor');
+                console.log(error);
+                // alert(error.statusText);
+            });
     }
 
 }

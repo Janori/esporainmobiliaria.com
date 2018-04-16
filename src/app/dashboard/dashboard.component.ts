@@ -21,6 +21,7 @@ declare var lscache: any;
 export class DashboardComponent implements OnInit {
     public user: User;
     public url: string;
+    public isAdminLogged: boolean = false;
 
     constructor(
         private _authService: AuthService,
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.user = new User(lscache.get('user'));
+        this.isAdminLogged = lscache.get('isAdmin');
         this.url = this._authService.url;
         $('body').attr('class', 'page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo');
     }
@@ -73,6 +75,30 @@ export class DashboardComponent implements OnInit {
                 );
             }
         });
+    }
+
+    returnToAdmin() {
+        let user = lscache.get('aminProfile');
+        lscache.remove('aminProfile');
+        lscache.remove('isAdmin');
+         
+        this._authService.customLogin(user).subscribe(
+            result => {
+                let data = result.data;
+                if(result.status) {
+                    toastr.success('¡Exito!', 'Bienvenido ' + data.user.name + ' ' + data.user.first_surname);
+                    lscache.set('user', data.user, data.ttl);
+                    lscache.set('authToken', data.token, data.ttl);
+                    window.location.href = '/';
+                }
+                else
+                  toastr.error('¡Error!', result.msg);
+            },
+            error => {
+                toastr.error('¡Error!', 'Hubo un error en el servidor');
+                console.log(error);
+                // alert(error.statusText);
+            });
     }
 
 }

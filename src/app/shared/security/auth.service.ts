@@ -36,6 +36,14 @@ export class AuthService extends Service {
 						 .map(res => res.json());
     }
 
+
+	customLogin(user: User) {
+		let headers = this.headers();
+
+		return this._http.post(this.url + 'authenticate/custom', user, {headers})
+						 .map(res => res.json());
+	}
+
 	logout = () => {
         lscache.flush();
 		this._router.navigate(['login']);
